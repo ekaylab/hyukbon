@@ -30,9 +30,9 @@ function Page() {
       <h1 className="text-28 md:text-40">ALLIENCE</h1>
       <div className="pt-4 text-16 break-normal">
         <p>
-          긴밀한 협조 관계를 통한 지식 교류로
+          신뢰를 바탕으로 한 협력사들과의 교류를 통해
           <br />
-          자체 프로젝트의 안정성을 높이고 있습니다.
+          변화무쌍한 부동산 시장 속 대응력을 갖추기 위해 노력합니다.
         </p>
       </div>
       <div className="flex flex-row flex-wrap items-start pt-20">
