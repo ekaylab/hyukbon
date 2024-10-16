@@ -7,7 +7,7 @@ function Page() {
       <h1 className="text-28 md:text-40">인재채용</h1>
       <div className="text-14 md:text-18 pt-4">
         <p>
-          추후 공지 예정
+          별도 공지 예정
         </p>
       </div>
     </article>
