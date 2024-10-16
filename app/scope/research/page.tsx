@@ -30,7 +30,7 @@ function Page() {
       <h1 className="text-28 md:text-40">RESEARCH</h1>
       <div className="pt-4 text-16 break-normal">
         <p>
-          양방향 분석을 통한 객관적인 시장 판단력으로
+          양방향 분석을 통한 객관적인 시장 데이터 기반으로
           <br /> 소비자에 맞춘 완벽한 전략을 개발합니다.
         </p>
       </div>
@@ -40,7 +40,7 @@ function Page() {
             <h3 className="text-26">RESEARCH BUSINESS</h3>
             <hr className="my-2" />
             <p>
-              객관적인 판단을 기반으로 사업의 타당성을 검토하고
+              객관적인 데이터 기반으로 사업의 타당성을 검토하고
               <br /> 혁본만의 전략 수립 및 분석을 진행합니다.
             </p>
           </div>
