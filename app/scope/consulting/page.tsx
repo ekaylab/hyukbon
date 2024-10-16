@@ -76,7 +76,7 @@ function Page() {
             <p className="text-16">
               지역적 특화 방안 모색
               <br />
-              입지대비 최적의 상품 판단
+              입지대비에 최적화된 대안제시
             </p>
           </li>
         </ul>
