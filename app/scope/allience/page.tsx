@@ -35,8 +35,8 @@ function Page() {
           자체 프로젝트의 안정성을 높이고 있습니다.
         </p>
       </div>
-      <div className="flex flex-row flex-wrap items-center pt-20">
-        <div className="w-full md:w-1/2 flex flex-col items-center">
+      <div className="flex flex-row flex-wrap items-start pt-20">
+        <div className="w-full md:w-1/2 flex flex-col items-center pt-10">
           <h3>협력사</h3>
           <p className="text-22 leading-loose flex mt-10">
             고객이 신뢰 할 수 있는 기업,
