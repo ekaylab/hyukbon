@@ -56,7 +56,7 @@ function Page() {
         </div>
         <ul className="w-full md:w-1/2 px-0 md:p-4">
           <li className="flex flex-row items-center justify-start border-t py-4 lg:px-8">
-            <h4 className="w-1/2">주거시설 분양</h4>
+            <h4 className="w-1/2">주거시설</h4>
             <p className="text-16">
               아파트, 주상복합
               <br />
@@ -64,17 +64,17 @@ function Page() {
             </p>
           </li>
           <li className="flex flex-row items-center justify-start border-t py-4 lg:px-8">
-            <h4 className="w-1/2">비주거시설 분양</h4>
+            <h4 className="w-1/2">비주거시설</h4>
             <p className="text-16">
               상업시설, 업무시설 등<br />
               수익형 부동산 분양대행
             </p>
           </li>
           <li className="flex flex-row items-center justify-start border-y py-4 lg:px-8">
-            <h4 className="w-1/2">토지 분양</h4>
+            <h4 className="w-1/2">호텔/관광</h4>
             <p className="text-16">
-              개발여건, 환금성 등<br />
-              지가 변동성 분석 및 분양대행
+              호텔, 생활형 숙박시설 등<br />
+              호텔 및 관광시설 분양대행
             </p>
           </li>
         </ul>
