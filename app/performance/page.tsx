@@ -22,7 +22,7 @@ function Page({ searchParams }: { searchParams: { category: string } }) {
       <h1 className="text-28 md:text-40">업무실적</h1>
       <div className="pt-4 text-16 break-normal">
         <p>
-          고객의 상품 가치 격상 및 활성화를 위해
+          저희 혁본은 고객의 상품 가치 격상 및 성공적인 사업을 위해
           <br /> 투입부터 마지막까지 최선을 다하여 책임지는 기업입니다.
         </p>
       </div>
