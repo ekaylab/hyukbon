@@ -70,7 +70,7 @@ function Page() {
             <h4 className="text-16 md:text-18">고객의 만족도</h4>
             <p className="font-light pt-3">
               안정성을 기반으로 높은 품질의 서비스 제공 수행과정 및 결과에 대한
-              상세한 기록관리
+              상세한 피드백 제공
             </p>
           </li>
         </ul>

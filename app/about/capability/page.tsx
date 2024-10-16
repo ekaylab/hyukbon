@@ -50,7 +50,7 @@ function Page() {
             <h4 className="text-16 md:text-18">견고한 기획</h4>
             <p className="font-light pt-3">
               환경분석, 디자인 컨셉 설정 <br />
-              인테리어 기획, 홍보계획 수립
+              인테리어, 홍보계획 수립 및 기획
             </p>
           </li>
           <li className="py-3 md:py-5 lg:px-5 lg:w-1/4">
@@ -61,7 +61,7 @@ function Page() {
             </p>
           </li>
           <li className=" py-3 md:py-5 lg:px-5 lg:w-1/4">
-            <h4 className="text-16 md:text-18">올바른 관리</h4>
+            <h4 className="text-16 md:text-18">올바른 대응</h4>
             <p className="font-light pt-3">
               거시적, 미시적 시장 분석
               <br />
@@ -69,11 +69,11 @@ function Page() {
             </p>
           </li>
           <li className="pt-3 md:pt-5 lg:pl-5 lg:w-1/4">
-            <h4 className="text-16 md:text-18">꾸준한 진화</h4>
+            <h4 className="text-16 md:text-18">꾸준한 성장</h4>
             <p className="font-light pt-3">
-              데이터 베이스 축적 노하우 축적
+              데이터 베이스 및 노하우 축적
               <br />
-              상품 마케팅, 신규 사업의 접목
+              상품 마케팅, 신규 사업 접목을 통한 성장
             </p>
           </li>
         </ul>

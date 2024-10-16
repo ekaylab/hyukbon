@@ -37,7 +37,7 @@ function Page() {
       </div>
       <div className="flex flex-row flex-wrap items-center pt-20">
         <div className="w-full md:w-1/2 flex flex-col items-center">
-          <h3>클라이언트 및 협력사</h3>
+          <h3>협력사</h3>
           <p className="text-22 leading-loose flex mt-10">
             고객이 신뢰 할 수 있는 기업,
             <br />
