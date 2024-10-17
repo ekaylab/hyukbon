@@ -70,7 +70,7 @@ function Page() {
       </section>
       <div className="w-full rounded-lg mt-32 flex h-[300px] relative overflow-hidden">
         <Image
-          src="/main.jpg"
+          src="/그림1.jpg"
           alt=""
           width={2000}
           height={1000}
