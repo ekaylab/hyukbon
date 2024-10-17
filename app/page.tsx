@@ -21,7 +21,7 @@ export default function Home() {
               </h3>
             </div>
             <Image
-              src="/메인.jpg"
+              src="/메인(2).jpg"
               alt="main_image"
               className="brightness-50 md:hidden h-[240px] group-hover:brightness-100 main-duration-300 "
               height={740}
