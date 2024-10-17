@@ -44,7 +44,7 @@ function Page() {
       </section>
       <div className="w-full rounded-lg mt-40 hidden md:flex  h-[400px] relative overflow-hidden">
         <Image
-          src="/main.jpg"
+          src="/사업분야.jpg"
           alt=""
           width={2000}
           height={1000}
