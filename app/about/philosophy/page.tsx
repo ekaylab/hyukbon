@@ -49,7 +49,7 @@ function Page() {
           <li className="pb-3 md:py-5 lg:pr-5">
             <h4 className="text-16 md:text-18">최대 이익 창출</h4>
             <p className="font-light pt-3">
-              축적된 노하우와 데이터베이스를 통해 고객의 이익 보호 최소한의
+              축적된 노하우와 데이터베이스를 통해 고객의 이익 보호, 최소한의
               리스크로 최대 가치 창출
             </p>
           </li>
@@ -62,14 +62,14 @@ function Page() {
           <li className=" py-3 md:py-5 lg:px-5">
             <h4 className="text-16 md:text-18">신의 성실 윤리</h4>
             <p className="font-light pt-3">
-              철저한 윤리규정 준수를 통한 투명한 업무 수행
+              철저한 윤리규정 준수를 통한 투명한 업무 수행,
               고객의 이익을 우선시하는 운영 방안 기획
             </p>
           </li>
           <li className="pt-3 md:pt-5 lg:pl-5">
             <h4 className="text-16 md:text-18">고객의 만족도</h4>
             <p className="font-light pt-3">
-              안정성을 기반으로 높은 품질의 서비스 제공 수행과정 및 결과에 대한
+              안정성을 기반으로 높은 품질의 서비스 제공, 수행과정 및 결과에 대한
               상세한 피드백 제공
             </p>
           </li>
