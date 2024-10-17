@@ -28,7 +28,7 @@ export default function Home() {
               width={1316}
             />
             <Image
-              src="/메인.jpg"
+              src="/메인(1).jpg"
               alt="main_image"
               className="brightness-50 hidden md:flex group-hover:brightness-100 main-duration-300 animate-zoom-in"
               height={740}
