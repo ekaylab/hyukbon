@@ -50,7 +50,7 @@ function Page() {
             <h4 className="text-16 md:text-18">견고한 기획</h4>
             <p className="font-light pt-3">
               환경분석, 디자인 컨셉 설정 <br />
-              인테리어, 홍보계획 수립 및 기획
+              마케팅, 홍보계획 수립 및 기획
             </p>
           </li>
           <li className="py-3 md:py-5 lg:px-5 lg:w-1/4">
@@ -65,7 +65,7 @@ function Page() {
             <p className="font-light pt-3">
               거시적, 미시적 시장 분석
               <br />
-              방향석 검토 환경변화 대응
+              방향성 검토, 환경변화 대응
             </p>
           </li>
           <li className="pt-3 md:pt-5 lg:pl-5 lg:w-1/4">

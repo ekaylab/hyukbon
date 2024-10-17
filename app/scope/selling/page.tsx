@@ -73,7 +73,7 @@ function Page() {
           <li className="flex flex-row items-center justify-start border-y py-4 lg:px-8">
             <h4 className="w-1/2">호텔/관광</h4>
             <p className="text-16">
-              호텔, 생활형 숙박시설 등<br />
+              생활형 숙박시설, 리조트 등<br />
               호텔 및 관광시설 분양대행
             </p>
           </li>
