@@ -21,14 +21,14 @@ export default function Home() {
               </h3>
             </div>
             <Image
-              src="/메인이미지-small.jpg"
+              src="/메인.jpg"
               alt="main_image"
               className="brightness-50 md:hidden h-[240px] group-hover:brightness-100 main-duration-300 "
               height={740}
               width={1316}
             />
             <Image
-              src="/메인이미지-big.jpg"
+              src="/메인.jpg"
               alt="main_image"
               className="brightness-50 hidden md:flex group-hover:brightness-100 main-duration-300 animate-zoom-in"
               height={740}
