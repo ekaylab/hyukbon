@@ -64,7 +64,7 @@ function Page() {
           <li className="flex flex-row items-center justify-start border-t py-4 md:px-8">
             <h4 className="w-1/2">BRAND</h4>
             <p className="text-14 md:text-16">
-              기업 이미지 선호 조사
+              상품 브랜드 선호 조사
               <br />
               건설사 및 브랜드 지표 조사
             </p>
