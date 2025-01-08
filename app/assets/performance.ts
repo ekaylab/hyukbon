@@ -1,6 +1,16 @@
 const performanceList: any = [
   {
     category: "공동주택",
+    name: "펜타시티 동화아이위시",
+    address: "경상북도 포항시 북구 흥해읍 대련리 일원",
+    units: "총 522세대",
+    scale: "지하 2층 ~ 지상 29층, 6개동",
+    year: "2025년 1월 ~ 진행중",
+    contractor: "동화건설",
+    residential: true,
+  },
+  {
+    category: "공동주택",
     name: "동대구역 센텀 화성파크드림",
     address: "대구광역시 동구 신암동 139-69번지 일원",
     units: "총 1,458세대",
