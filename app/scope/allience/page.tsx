@@ -35,8 +35,8 @@ function Page() {
           변화무쌍한 부동산 시장 속 대응력을 갖추기 위해 노력합니다.
         </p>
       </div>
-      <div className="flex flex-row flex-wrap items-center pt-20">
-        <div className="w-full md:w-1/2 flex flex-col items-center">
+      <div className="flex flex-row flex-wrap items-start pt-20">
+        <div className="w-full md:w-1/2 flex flex-col items-center pt-10">
           <h3>협력사</h3>
           <p className="text-22 leading-loose flex mt-10">
             고객이 신뢰 할 수 있는 기업,
@@ -57,8 +57,8 @@ function Page() {
           <Image src="/협력사.png" alt="" width={5863} height={3869} />
         </div>
       </div>
-      <div className="flex border-t border-solid mt-20 flex-row flex-wrap items-center pt-20">
-        <div className="w-full md:w-1/2 flex flex-col items-center">
+      <div className="flex border-t border-solid mt-20 flex-row flex-wrap pt-20">
+        <div className="w-full md:w-1/2 flex flex-col items-center pt-4">
           <h3>주택건설사업자등록증</h3>
         </div>
         <div className="w-full md:w-1/2 relative rounded-xl overflow-hidden">
@@ -70,8 +70,8 @@ function Page() {
           />
         </div>
       </div>
-      <div className="flex border-t border-solid mt-20 flex-row flex-wrap items-center pt-20">
-        <div className="w-full md:w-1/2 flex flex-col items-center">
+      <div className="flex border-t border-solid mt-20 flex-row flex-wrap pt-20">
+        <div className="w-full md:w-1/2 flex flex-col items-center pt-4">
           <h3>한국부동산마케팅협회 공식 회원사</h3>
           <p className="text-22 leading-loose flex mt-10">
             한국부동산마케팅협회의 회원사로서

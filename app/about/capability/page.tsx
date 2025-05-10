@@ -73,7 +73,7 @@ function Page() {
             <p className="font-light pt-3">
               데이터 베이스 및 노하우 축적
               <br />
-              상품 마케팅, 신규 사업 접목을 통한 성장
+              마케팅, 신규 사업 접목을 통한 성장
             </p>
           </li>
         </ul>

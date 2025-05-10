@@ -47,7 +47,7 @@ function Page() {
             </p>
           </div>
           <Image
-            src="/research.jpg"
+            src="/selling.jpg"
             alt=""
             className="w-full h-[400px] brightness-50"
             width={5863}
