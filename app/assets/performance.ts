@@ -6,7 +6,7 @@ const performanceList: any = [
     units: "총 569세대",
     scale: "지하 4층 ~ 지상 29층, 6개동",
     year: "2025년 8월 ~ 진행중",
-    contractor: "(주)씨앤위",
+    contractor: "동문건설",
     residential: true,
   },
   {
