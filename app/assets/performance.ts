@@ -1,6 +1,16 @@
 const performanceList: any = [
   {
     category: "공동주택",
+    name: "춘천 동문 디 이스트 어반포레",
+    address: "강원특별자치도 춘천시 동면 만천리 811-21번지 일원",
+    units: "총 569세대",
+    scale: "지하 4층 ~ 지상 29층, 6개동",
+    year: "2025년 8월 ~ 진행중",
+    contractor: "(주)씨앤위",
+    residential: true,
+  },
+  {
+    category: "공동주택",
     name: "펜타시티 동화아이위시",
     address: "경상북도 포항시 북구 흥해읍 대련리 일원",
     units: "총 522세대",
