@@ -10,7 +10,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-function Page({ searchParams }: { searchParams: { category: string } }) {
+async function Page(props: { searchParams: Promise<{ category: string }> }) {
+  const searchParams = await props.searchParams;
   const category = searchParams.category;
 
   const filteredPerformanceByCategory = performanceList.filter(
