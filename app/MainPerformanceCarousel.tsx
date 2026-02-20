@@ -8,9 +8,10 @@ import { EmblaOptionsType } from "embla-carousel";
 import performanceList from "@/app/assets/performance";
 
 const OPTIONS: EmblaOptionsType = {
-  dragFree: false,
+  dragFree: true,
   align: "center",
   loop: true,
+  duration: 30,
 };
 
 const dataList = performanceList.slice(0, 10);

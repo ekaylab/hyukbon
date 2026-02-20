@@ -23,14 +23,14 @@ export default function Home() {
             <Image
               src="/메인(2).jpg"
               alt="main_image"
-              className="brightness-50 md:hidden h-[240px] group-hover:brightness-100 main-duration-300 "
+              className="brightness-50 md:hidden h-[240px] main-duration-300 "
               height={740}
               width={1316}
             />
             <Image
               src="/메인(1).jpg"
               alt="main_image"
-              className="brightness-50 hidden md:flex group-hover:brightness-100 main-duration-300 animate-zoom-in"
+              className="brightness-50 hidden md:flex main-duration-300 animate-zoom-in"
               height={740}
               width={1316}
             />
