@@ -1,15 +1,5 @@
 const performanceList: any = [
   {
-    category: "공동주택","오피스텔",
-    name: "정동 롯데캐슬 136",
-    address: "서울특별시 중구 순화동 6-11번지 일원",
-    units: "총 136세대",
-    scale: "지하 7층 ~ 지상 20층,
-    year: "2026년 1월 ~ 진행중",
-    contractor: "롯데건설",
-    residential: true,
-  },
-  {
     category: "공동주택",
     name: "정동 롯데캐슬 136",
     address: "서울특별시 중구 순화동 6-11번지 일원",
