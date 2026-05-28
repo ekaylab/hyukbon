@@ -14,7 +14,9 @@ const OPTIONS: EmblaOptionsType = {
   duration: 30,
 };
 
-const dataList = performanceList.slice(0, 10);
+const dataList = Array.from(
+  new Map(performanceList.map((d: any) => [d.name, d])).values(),
+).slice(0, 10);
 
 const MainPerformanceCarousel = () => {
   const [emblaRef] = useEmblaCarousel(OPTIONS, [
