@@ -12,7 +12,7 @@ import {
 
 async function Page(props: { searchParams: Promise<{ category: string }> }) {
   const searchParams = await props.searchParams;
-  const category = searchParams.category;
+  const category = searchParams.category || "공동주택";
 
   const filteredPerformanceByCategory = performanceList.filter(
     (property: any) => !category || property.category === category,
@@ -32,20 +32,6 @@ async function Page(props: { searchParams: Promise<{ category: string }> }) {
         <div className="mb-5">
           <NavigationMenu>
             <NavigationMenuList className="flex flex-row flex-wrap justify-start">
-              <NavigationMenuItem>
-                <Link
-                  scroll={false}
-                  href="/performance"
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} ${!category ? "bg-accent" : ""}`}
-                  >
-                    전체
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link
                   scroll={false}
