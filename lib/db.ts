@@ -8,17 +8,12 @@ import {
   DeleteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import type { Performance } from "./performance";
+import { AWS_REGION, awsCredentials } from "./aws";
 
 const TABLE = process.env.PERF_TABLE!;
 
 const ddb = DynamoDBDocumentClient.from(
-  new DynamoDBClient({
-    region: process.env.APP_AWS_REGION,
-    credentials: {
-      accessKeyId: process.env.APP_AWS_ACCESS_KEY_ID!,
-      secretAccessKey: process.env.APP_AWS_SECRET_ACCESS_KEY!,
-    },
-  }),
+  new DynamoDBClient({ region: AWS_REGION, credentials: awsCredentials }),
 );
 
 export async function getAllPerformance(): Promise<Performance[]> {

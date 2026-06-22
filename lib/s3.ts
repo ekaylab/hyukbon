@@ -1,16 +1,11 @@
 import "server-only";
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { AWS_REGION, awsCredentials } from "./aws";
 
 const BUCKET = process.env.S3_BUCKET!;
 const PUBLIC_BASE = process.env.S3_PUBLIC_BASE!;
 
-const s3 = new S3Client({
-  region: process.env.APP_AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.APP_AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.APP_AWS_SECRET_ACCESS_KEY!,
-  },
-});
+const s3 = new S3Client({ region: AWS_REGION, credentials: awsCredentials });
 
 export async function uploadImage(
   key: string,

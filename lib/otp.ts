@@ -8,6 +8,7 @@ import {
   DeleteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { AWS_REGION, awsCredentials } from "./aws";
 
 const TABLE = process.env.OTP_TABLE!;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
@@ -15,14 +16,10 @@ const SES_FROM = process.env.SES_FROM!;
 const TTL_SECONDS = 600; // 10 min
 const MAX_ATTEMPTS = 5;
 
-const region = process.env.APP_AWS_REGION;
-const credentials = {
-  accessKeyId: process.env.APP_AWS_ACCESS_KEY_ID!,
-  secretAccessKey: process.env.APP_AWS_SECRET_ACCESS_KEY!,
-};
-
-const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region, credentials }));
-const ses = new SESv2Client({ region, credentials });
+const ddb = DynamoDBDocumentClient.from(
+  new DynamoDBClient({ region: AWS_REGION, credentials: awsCredentials }),
+);
+const ses = new SESv2Client({ region: AWS_REGION, credentials: awsCredentials });
 
 function hash(code: string): string {
   return crypto.createHash("sha256").update(code + process.env.ADMIN_SECRET).digest("hex");
