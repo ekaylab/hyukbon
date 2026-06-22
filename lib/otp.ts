@@ -9,10 +9,8 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { AWS_REGION, awsCredentials } from "./aws";
+import { OTP_TABLE as TABLE, ADMIN_EMAIL, SES_FROM } from "./config";
 
-const TABLE = process.env.OTP_TABLE!;
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
-const SES_FROM = process.env.SES_FROM!;
 const TTL_SECONDS = 600; // 10 min
 const MAX_ATTEMPTS = 5;
 

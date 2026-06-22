@@ -1,9 +1,7 @@
 import "server-only";
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { AWS_REGION, awsCredentials } from "./aws";
-
-const BUCKET = process.env.S3_BUCKET!;
-const PUBLIC_BASE = process.env.S3_PUBLIC_BASE!;
+import { S3_BUCKET as BUCKET, S3_PUBLIC_BASE as PUBLIC_BASE } from "./config";
 
 const s3 = new S3Client({ region: AWS_REGION, credentials: awsCredentials });
 

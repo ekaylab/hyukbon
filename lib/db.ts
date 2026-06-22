@@ -9,8 +9,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import type { Performance } from "./performance";
 import { AWS_REGION, awsCredentials } from "./aws";
-
-const TABLE = process.env.PERF_TABLE!;
+import { PERF_TABLE as TABLE } from "./config";
 
 const ddb = DynamoDBDocumentClient.from(
   new DynamoDBClient({ region: AWS_REGION, credentials: awsCredentials }),
