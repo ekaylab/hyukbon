@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "인사말",
+  description: "㈜혁본 대표 인사말. 고객 가치 극대화를 향한 우리의 약속을 전합니다.",
+};
+
 function Page() {
   return (
     <article className="w-full px-4 md:px-0 pt-20 pb-32 max-w-[384px] md:w-[712px] lg:w-[802px]  md:max-w-none mx-auto text-26 md:text-30">

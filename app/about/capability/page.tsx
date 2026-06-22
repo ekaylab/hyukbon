@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "수행역량",
+  description: "분양 대행과 부동산 개발 전 과정을 아우르는 ㈜혁본의 수행역량을 소개합니다.",
+};
+
 function Page() {
   return (
     <article className="w-full px-4 md:px-0 pt-20 pb-32 max-w-[384px] md:w-[712px] lg:w-[850px]  md:max-w-none mx-auto text-26 md:text-30">

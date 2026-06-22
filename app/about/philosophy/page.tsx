@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "경영이념",
+  description: "체계적인 시스템과 핵심가치를 바탕으로 한 ㈜혁본의 경영이념을 소개합니다.",
+};
+
 function Page() {
   return (
     <article className="w-full px-4 md:px-0 pt-20 pb-32 max-w-[384px] md:w-[712px] lg:w-[850px]  md:max-w-none mx-auto text-26 md:text-30">

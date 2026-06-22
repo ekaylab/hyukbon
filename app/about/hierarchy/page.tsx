@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "조직구성",
+  description: "구성원과 함께 시너지를 극대화하는 ㈜혁본의 조직구성을 안내합니다.",
+};
+
 function Page() {
   return (
     <article className="w-full px-4 md:px-0 pt-20 pb-32 max-w-[384px] md:w-[712px] lg:w-[802px]  md:max-w-none mx-auto text-26 md:text-30">

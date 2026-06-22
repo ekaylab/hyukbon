@@ -5,7 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/'
+        allow: '/',
+        disallow: '/admin',
       },
     ],
     sitemap: `https://hyukbon.com/sitemap.xml`,

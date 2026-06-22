@@ -7,12 +7,16 @@ import {RxHamburgerMenu} from "react-icons/rx";
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://hyukbon.com'),
-    title: '혁본',
+    title: {
+        default: '㈜혁본 | 분양대행·부동산개발',
+        template: '%s | ㈜혁본',
+    },
+    description: '㈜혁본은 분양 대행 및 부동산 개발과 관련된 전과정을 포괄적으로 수행하고있는 회사입니다.',
     openGraph: {
-        title: '혁본',
+        title: '㈜혁본',
         description: '㈜혁본은 분양 대행 및 부동산 개발과 관련된 전과정을 포괄적으로 수행하고있는 회사입니다.',
         url: 'https://hyukbon.com',
-        siteName: '㈜혁본은 분양 대행 및 부동산 개발과 관련된 전과정을 포괄적으로 수행하고있는 회사입니다',
+        siteName: '㈜혁본',
         locale: 'ko_KR',
         type: 'website',
         images: [{url: '/main.jpg', alt: '혁본'}],

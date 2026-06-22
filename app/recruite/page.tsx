@@ -1,6 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
+export const metadata = {
+  title: "인재채용",
+  description: "㈜혁본과 함께 성장할 인재를 찾습니다. 채용 정보를 안내합니다.",
+};
+
 function Page() {
   return (
     <article className="w-full min-h-screen px-4 md:px-0 pt-20 pb-32 max-w-[384px] md:w-[712px] lg:w-[850px]  md:max-w-none mx-auto text-26 md:text-30">

@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "분양대행",
+  description: "시장 분석에 기반한 ㈜혁본의 분양 대행 및 마케팅 솔루션을 제안합니다.",
+};
+
 function Page() {
   return (
     <article className="w-full px-4 md:px-0 pt-20 pb-40 max-w-[384px] md:w-[712px] lg:w-[948px] xl:w-[1316px] md:max-w-none mx-auto text-26 md:text-30">

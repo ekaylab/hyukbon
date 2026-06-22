@@ -2,6 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+export const metadata = {
+  title: "사업분야",
+  description: "부동산 시장 분석을 바탕으로 컨설팅, 리서치, 분양대행, 협력사업을 제공하는 ㈜혁본의 사업분야입니다.",
+};
+
 function Page() {
   return (
     <article className="w-full px-4 md:px-0 pt-20 pb-40 max-w-[384px] md:w-[712px] lg:w-[948px] xl:w-[1316px] md:max-w-none mx-auto text-26 md:text-30">

@@ -12,6 +12,11 @@ import {
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "업무실적",
+  description: "공동주택, 오피스텔, 타운하우스, 상업시설 등 ㈜혁본이 수행한 분양·개발 실적을 소개합니다.",
+};
+
 async function Page(props: { searchParams: Promise<{ category: string }> }) {
   const searchParams = await props.searchParams;
   const category = searchParams.category || "공동주택";
