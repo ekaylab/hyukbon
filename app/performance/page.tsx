@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import performanceList from "@/app/assets/performance";
+import { getAllPerformance } from "@/lib/db";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -10,12 +10,15 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+export const dynamic = "force-dynamic";
+
 async function Page(props: { searchParams: Promise<{ category: string }> }) {
   const searchParams = await props.searchParams;
   const category = searchParams.category || "공동주택";
 
+  const performanceList = await getAllPerformance();
   const filteredPerformanceByCategory = performanceList.filter(
-    (property: any) => !category || property.category === category,
+    (property) => !category || property.category === category,
   );
 
   return (
@@ -107,7 +110,7 @@ async function Page(props: { searchParams: Promise<{ category: string }> }) {
         </div>
         <ul className="flex flex-row flex-wrap">
           {filteredPerformanceByCategory.map(
-            (performance: any, index: number) => (
+            (performance, index: number) => (
               <li
                 className="relative md:w-[337px] md:mr-4 lg:mr-5 h-[400px] hover:opacity-80 main-duration-300 md:h-[460px] w-full flex lg:w-[410px] mt-4 lg:mt-5 overflow-hidden md:justify-center"
                 key={index}
@@ -145,12 +148,14 @@ async function Page(props: { searchParams: Promise<{ category: string }> }) {
                     </ul>
                   </div>
                   <div className="relative w-full h-3/5 shrink-0">
-                    <Image
-                      priority={true}
-                      fill
-                      src={`/실적/${performance.name}.jpg`}
-                      alt={performance.name}
-                    />
+                    {performance.imageUrl && (
+                      <Image
+                        priority={true}
+                        fill
+                        src={performance.imageUrl}
+                        alt={performance.name}
+                      />
+                    )}
                   </div>
                 </div>
               </li>

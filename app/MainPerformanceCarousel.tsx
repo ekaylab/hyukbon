@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import { EmblaOptionsType } from "embla-carousel";
-import performanceList from "@/app/assets/performance";
+import type { Performance } from "@/lib/performance";
 
 const OPTIONS: EmblaOptionsType = {
   dragFree: true,
@@ -14,11 +13,11 @@ const OPTIONS: EmblaOptionsType = {
   duration: 30,
 };
 
-const dataList = Array.from(
-  new Map(performanceList.map((d: any) => [d.name, d])).values(),
-).slice(0, 10);
+const MainPerformanceCarousel = ({ items }: { items: Performance[] }) => {
+  const dataList = Array.from(
+    new Map(items.map((d) => [d.name, d])).values(),
+  ).slice(0, 10);
 
-const MainPerformanceCarousel = () => {
   const [emblaRef] = useEmblaCarousel(OPTIONS, [
     Autoplay({ playOnInit: true, delay: 5000 }),
   ]);
@@ -26,7 +25,7 @@ const MainPerformanceCarousel = () => {
   return (
     <div className="cursor-pointer" ref={emblaRef}>
       <ul className="flex touch-pan-y flex-nowrap -ml-2.5 md:ml-0 xl:-ml-4 select-none">
-        {dataList.map((data: any, index: number) => (
+        {dataList.map((data, index: number) => (
           <li
             className="relative h-[350px] md:h-[400px] flex min-w-full overflow-hidden pl-3 xl:pl-4 shrink-0 md:min-w-[427px] xl:w-[444px] md:justify-center"
             key={index}
@@ -51,12 +50,14 @@ const MainPerformanceCarousel = () => {
                 </ul>
               </div>
               <div className="relative w-full h-3/5 shrink-0">
-                <Image
-                  priority={true}
-                  fill
-                  src={`/실적/${data.name}.jpg`}
-                  alt="main banner"
-                />
+                {data.imageUrl && (
+                  <Image
+                    priority={true}
+                    fill
+                    src={data.imageUrl}
+                    alt={data.name}
+                  />
+                )}
               </div>
             </div>
           </li>

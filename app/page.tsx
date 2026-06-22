@@ -2,8 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaArrowCircleRight } from "react-icons/fa";
 import MainPerformanceCarousel from "@/app/MainPerformanceCarousel";
+import { getAllPerformance } from "@/lib/db";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const performanceList = await getAllPerformance();
   return (
     <article className="flex flex-col flex-wrap px-3.5 md:px-0 overflow-x-hidden ">
       <div className="w-full max-w-[384px] md:w-[712px] lg:w-[948px] xl:w-[1316px] md:max-w-none mx-auto text-26 md:text-30">
@@ -216,7 +220,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="pt-10">
-            <MainPerformanceCarousel />
+            <MainPerformanceCarousel items={performanceList} />
           </div>
         </section>
       </div>
