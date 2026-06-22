@@ -42,6 +42,7 @@ export default function RootLayout({
         <html lang="ko">
         <head>
             <meta name="naver-site-verification" content="716b87f5b19c4f5e72515e83be5f2d1f0e35b745"/>
+            <meta name="google-site-verification" content="ee3S2C0X6VWIomS40SLwuWk6SMWtIGi_GHsG8AVTVrM"/>
         </head>
         <body>
         <header className="mx-auto h-14 md:h-20 sticky border-b top-0 border-solid z-50 bg-white">
