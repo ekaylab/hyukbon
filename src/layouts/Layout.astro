@@ -9,13 +9,35 @@ interface Props {
 
 const {
   title,
-  description = "㈜혁본은 분양 대행 및 부동산 개발과 관련된 전과정을 포괄적으로 수행하고있는 회사입니다.",
+  description = "혁본은 분양대행 및 부동산 개발의 전 과정을 포괄적으로 수행하는 전문기업입니다.",
   ogImage = "/main.jpg",
 } = Astro.props;
 
-const DEFAULT_TITLE = "㈜혁본 | 분양대행·부동산개발";
-const fullTitle = title ? `${title} | ㈜혁본` : DEFAULT_TITLE;
+const DEFAULT_TITLE = "혁본 | 분양대행·부동산개발";
+const fullTitle = title ? `${title} | 혁본` : DEFAULT_TITLE;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  name: "혁본",
+  legalName: "주식회사 혁본",
+  alternateName: ["㈜혁본", "주식회사 혁본", "HYUKBON"],
+  url: "https://hyukbon.com",
+  logo: "https://hyukbon.com/혁본로고.png",
+  image: "https://hyukbon.com/main.jpg",
+  description:
+    "혁본은 분양대행 및 부동산 개발의 전 과정을 포괄적으로 수행하는 전문기업입니다.",
+  telephone: "+82-1522-9432",
+  faxNumber: "+82-50-4132-9432",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "동탄기흥로 614 더퍼스트타워2차 301호",
+    addressLocality: "화성시",
+    addressRegion: "경기도",
+    addressCountry: "KR",
+  },
+};
 ---
 
 <!doctype html>
@@ -36,13 +58,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       content="716b87f5b19c4f5e72515e83be5f2d1f0e35b745"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="㈜혁본" />
+    <meta property="og:site_name" content="혁본" />
     <meta property="og:locale" content="ko_KR" />
-    <meta property="og:title" content={title ?? "㈜혁본"} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(orgJsonLd)}
+    />
+    <slot name="head" />
   </head>
   <body>
     <header
