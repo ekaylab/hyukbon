@@ -1,21 +1,24 @@
 # CLAUDE.md — hyukbon
 
-㈜혁본 소개 사이트. Next.js 16 (App Router) + Tailwind, Vercel 호스팅(hyukbon.com).
+㈜혁본 회사소개 사이트. **Astro (전정적) + Tailwind v4**, Cloudflare Pages 호스팅(hyukbon.com).
+2026-07 Next.js/Vercel → Astro/Cloudflare 이전. DB·서버로직 전면 제거.
 
-## 데이터/인프라 (AWS personal 381491848841, ap-northeast-2)
-- 실적=DynamoDB `hyukbon-performance`, 이미지=S3 `hyukbon-assets-381491848841`(`performance/*` public-read). OTP=DynamoDB `hyukbon-otp`(TTL `expiresAt`). 구 `app/assets/performance.ts`+`public/실적` 폐지.
-- 읽기=server component가 `lib/db.ts` 직접 호출, 쓰기=`/admin` server action. **공개 REST API 없음.**
-- DDB 읽는 페이지는 `export const dynamic = "force-dynamic"` (AWS SDK는 Next 캐시 안 됨 + 빌드때 AWS 접근 회피).
-- `next/image`로 S3 이미지 쓰려면 `next.config.mjs` remotePatterns에 버킷 호스트 등록.
+## 데이터
+- 실적 54건 = `src/data/performance.json`, 이미지 = `src/assets/performance/<id>.jpg`(astro:assets가 빌드때 webp 최적화·리사이즈). **DB 없음.**
+- 편집 = 파일 수정 → git push → CF Pages 자동 재빌드. 별도 admin/API 없음.
+- 데이터·이미지 로더 = `src/lib/performance.ts` (glob으로 파일명→ImageMetadata 매핑).
 
-## AWS 자격증명
-- 프로덕션=Vercel OIDC→role `hyukbon-app-role`(정적 키 없음). 로컬=IAM user `hyukbon-app` 키를 `.env.local`에 `APP_AWS_*` prefix로(Vercel은 `AWS_*` 예약).
-- 분기: `process.env.VERCEL` 있으면 OIDC, 없으면 키. 로컬 build/dev=키 경로.
-- `lib/config.ts`=비밀 아닌 상수. 유일 secret=`ADMIN_SECRET`(env var, 절대 커밋 금지).
+## 구조 주의점
+- 커스텀 Tailwind 토큰(text-14/…/50, color main·txt-01~06, breakpoint esa/xxs/…, container-1200)은 **`src/styles/global.css`의 `@theme`** (v4는 config 파일 안 씀).
+- `/performance` 카테고리 필터 = 클라이언트 JS 탭(전 항목 DOM 렌더 후 토글). 쿼리파라미터 아님.
+- 메인 캐러셀 = **vanilla embla**(`src/components/PerformanceCarousel.astro`), React island 아님.
+- 라우팅 = 파일기반(`src/pages`). 공개 정적 이미지는 `public/`(로고·메인·PDF 등), 최적화 대상 실적 이미지만 `src/assets`.
+- sitemap = `@astrojs/sitemap` 자동(`/sitemap-index.xml`), robots = `public/robots.txt`.
 
-## Admin
-- `/admin` 이메일 OTP 로그인(비번 없음). SES 발신 `noreply@eklab.kr`(이 계정에 eklab.kr 등 도메인 검증됨→주소검증 불필요), 수신 `da000210@gmail.com`.
+## 배포
+- CF Pages git 연동. build=`astro build`, output=`dist/`. adapter 불필요(전정적).
+- `wrangler pages deploy dist`로 수동 배포도 가능(로그인됨).
 
-## Gotchas
-- AWS CLI: `--profile personal` 필수(default=회사). 글로벌 플래그를 쉘 변수(`$P`)로 넘기면 "Unknown options"→매 호출 인라인.
-- 한글 텍스트는 `grep`에서 깨짐→데이터 파싱은 node로.
+## 폐지된 구 아키텍처 (참고)
+- 구: DynamoDB `hyukbon-performance`+`hyukbon-otp`, S3 `hyukbon-assets-381491848841`, SES OTP admin 로그인, Vercel OIDC role `hyukbon-app-role`, IAM user `hyukbon-app`. 전부 미사용.
+- ⚠️ **AWS 리소스는 아직 살아있음(비용·보안면).** 실적 데이터는 `migrate/`(gitignore)로 export 완료 → DDB 테이블·S3 버킷·SES·IAM role/user 폐기(decommission) 남음.

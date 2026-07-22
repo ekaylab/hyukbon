@@ -9,12 +9,12 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# astro
+/dist/
+/.astro/
 
-# production
-/build
+# migration scratch (raw DDB dump + full-res S3 downloads — not committed)
+/migrate/
 
 # misc
 .DS_Store

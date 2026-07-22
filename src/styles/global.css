@@ -1,0 +1,119 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css");
+@import "tailwindcss";
+
+@theme {
+  /* brand + text colors (ported from tailwind.config.ts) */
+  --color-main: #bf1822;
+  --color-txt-01: #222222;
+  --color-txt-02: #606060;
+  --color-txt-03: #737373;
+  --color-txt-04: #b7cfff;
+  --color-txt-05: #61db92;
+  --color-txt-06: #b0b0ba;
+
+  /* shadcn-derived neutrals still referenced by markup */
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 3.9%);
+  --color-border: hsl(0 0% 89.8%);
+  --color-accent: hsl(0 0% 96.1%);
+
+  /* custom font-size scale [size, line-height] */
+  --text-10: 0.625rem;
+  --text-10--line-height: 15px;
+  --text-11: 0.688rem;
+  --text-11--line-height: 16.5px;
+  --text-12: 0.75rem;
+  --text-12--line-height: 18px;
+  --text-14: 0.875rem;
+  --text-14--line-height: 21px;
+  --text-16: 1rem;
+  --text-16--line-height: 24px;
+  --text-18: 1.125rem;
+  --text-18--line-height: 27px;
+  --text-21: 1.313rem;
+  --text-21--line-height: 31.5px;
+  --text-22: 1.375rem;
+  --text-22--line-height: 33px;
+  --text-24: 1.5rem;
+  --text-24--line-height: 36px;
+  --text-25: 1.563rem;
+  --text-25--line-height: 37.5px;
+  --text-26: 1.625rem;
+  --text-26--line-height: 39px;
+  --text-28: 1.75rem;
+  --text-28--line-height: 40px;
+  --text-30: 1.875rem;
+  --text-30--line-height: 45px;
+  --text-36: 2.25rem;
+  --text-36--line-height: 54px;
+  --text-38: 2.375rem;
+  --text-38--line-height: 57px;
+  --text-40: 2.5rem;
+  --text-40--line-height: 60px;
+  --text-50: 3.125rem;
+  --text-50--line-height: 75px;
+
+  /* custom breakpoints (ported) */
+  --breakpoint-esa: 310px;
+  --breakpoint-xxs: 340px;
+  --breakpoint-xs: 360px;
+  --breakpoint-xs2: 369px;
+  --breakpoint-smd: 375px;
+  --breakpoint-smd2: 768px;
+  --breakpoint-md2: 800px;
+
+  /* custom max-width (ported) */
+  --container-1200: 1200px;
+
+  /* hero zoom animation */
+  --animate-zoom-in: zoom-in 5s ease-in-out forwards;
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(3);
+  }
+}
+
+@layer base {
+  html {
+    font-family:
+      "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+      system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+      "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", sans-serif;
+    line-height: 1.625;
+    scroll-behavior: smooth;
+  }
+
+  /* preserve v3 default border color (v4 defaults to currentColor) */
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
+
+  body {
+    @apply bg-white text-16 text-txt-01;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+}
+
+.main-duration-300 {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.main-color-transition {
+  @apply transition-colors duration-300 ease-in-out;
+}

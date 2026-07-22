@@ -1,0 +1,126 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "㈜혁본은 분양 대행 및 부동산 개발과 관련된 전과정을 포괄적으로 수행하고있는 회사입니다.",
+  ogImage = "/main.jpg",
+} = Astro.props;
+
+const DEFAULT_TITLE = "㈜혁본 | 분양대행·부동산개발";
+const fullTitle = title ? `${title} | ㈜혁본` : DEFAULT_TITLE;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="white" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-48x48.png" />
+    <link rel="canonical" href={canonical} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="임익환" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="naver-site-verification"
+      content="716b87f5b19c4f5e72515e83be5f2d1f0e35b745"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="㈜혁본" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content={title ?? "㈜혁본"} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <header
+      class="mx-auto sticky top-0 z-50 h-14 border-b border-solid bg-white md:h-20"
+    >
+      <div
+        class="mx-auto flex h-full w-full items-center px-4 md:w-[712px] md:px-0 lg:w-[952px] xl:w-[1316px]"
+      >
+        <nav class="relative flex w-full flex-row justify-between">
+          <a href="/" class="flex items-center">
+            <img
+              class="w-[120px] md:w-[155px]"
+              src="/혁본로고.png"
+              alt="혁본로고"
+              width="155"
+              height="30"
+            />
+          </a>
+          <ul
+            class="text-18 hidden w-3/5 flex-row flex-wrap justify-between md:flex"
+          >
+            <li class="flex items-center"><a href="/about">회사소개</a></li>
+            <li class="flex items-center"><a href="/scope">사업분야</a></li>
+            <li class="flex items-center">
+              <a href="/performance">업무실적</a>
+            </li>
+            <li class="flex items-center"><a href="/recruite">인재채용</a></li>
+          </ul>
+          <div class="flex items-center md:hidden">
+            <label for="menu-toggle" class="cursor-pointer">
+              <svg
+                class="text-22"
+                width="1em"
+                height="1em"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1.5 3h12M1.5 7.5h12M1.5 12h12"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"></path>
+              </svg>
+            </label>
+            <input type="checkbox" id="menu-toggle" class="peer hidden" />
+            <ul
+              class="text-22 shadow absolute -left-4 right-0 top-10 z-50 max-h-0 w-screen overflow-hidden bg-white p-0 peer-checked:max-h-screen peer-checked:p-5"
+            >
+              <li class="my-4 border-b"><a href="/about">회사소개</a></li>
+              <li class="my-4 border-b"><a href="/scope">사업분야</a></li>
+              <li class="my-4 border-b"><a href="/performance">업무실적</a></li>
+              <li class="my-4 border-b"><a href="/recruite">인재채용</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer
+      class="text-14 text-txt-06 flex items-center justify-center bg-neutral-800 py-14 md:px-0"
+    >
+      <div
+        class="flex max-w-[384px] flex-row md:w-[712px] md:max-w-none lg:w-[1000px] xl:w-[1500px]"
+      >
+        <div class="flex flex-col">
+          <h4 class="text-30">HYUKBON</h4>
+          <p class="mt-4">
+            주식회사 혁본 ㅣ 경기도 화성시 동탄기흥로 614,<br class="md:hidden" />
+            더퍼스트타워2차 301호 (영천동) ㅣ<br class="md:hidden" /> 대표번호 : 1522-9432
+            ㅣ 팩스 : 050-4132-9432
+          </p>
+          <p>Copyright(c) HYUKBON.co.Ltd., All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

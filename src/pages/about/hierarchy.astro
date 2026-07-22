@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="조직구성"
+  description="구성원과 함께 시너지를 극대화하는 ㈜혁본의 조직구성을 안내합니다."
+>
+  <article
+    class="w-full px-4 md:px-0 pt-20 pb-32 max-w-[384px] md:w-[712px] lg:w-[802px]  md:max-w-none mx-auto text-26 md:text-30"
+  >
+    <div
+      class="hidden xl:fixed xl:inline-block left-10 top-40 rounded overflow-hidden"
+    >
+      <a href="/about" class="w-full flex h-full bg-gray-200 p-10 text-18">
+        회사소개
+      </a>
+      <ul class="pl-3 pt-1 divide-y-2 text-16">
+        <li class="py-2"><a href="/about/greetings">인사말</a></li>
+        <li class="py-2"><a href="/about/hierarchy">조직도</a></li>
+        <li class="py-2"><a href="/about/philosophy">경영이념</a></li>
+        <li class="py-2"><a href="/about/capability">사업역량</a></li>
+      </ul>
+    </div>
+    <h1 class="text-28 md:text-40">HIERACHY</h1>
+    <div class="text-14 md:text-18 pt-4">
+      <p>
+        갇혀 있는 조직이 아닌 구성원과의 소통, 다양한 협력을 통해
+        <br />
+        유기적 시스템으로 효율성을 극대화합니다.
+      </p>
+    </div>
+    <div class="pt-12">
+      <img
+        src="/hierachy.png"
+        alt="조직도"
+        width="1316"
+        height="1300"
+        class="w-4/5 mx-auto"
+      />
+    </div>
+  </article>
+</Layout>

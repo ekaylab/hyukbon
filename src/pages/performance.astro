@@ -1,0 +1,119 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import { performance, imageFor, CATEGORIES } from "../lib/performance";
+
+const DEFAULT_CATEGORY = "공동주택";
+---
+
+<Layout
+  title="업무실적"
+  description="공동주택, 오피스텔, 타운하우스, 상업시설 등 ㈜혁본이 수행한 분양·개발 실적을 소개합니다."
+>
+  <article
+    class="text-26 mx-auto w-full max-w-[384px] px-4 pb-40 pt-20 md:w-[712px] md:max-w-none md:px-0 md:text-30 lg:w-[948px] xl:w-[1316px]"
+  >
+    <h1 class="text-28 md:text-40">업무실적</h1>
+    <div class="text-16 break-normal pt-4">
+      <p>
+        저희 혁본은 고객의 상품 가치 격상 및 성공적인 사업을 위해
+        <br /> 투입부터 마지막까지 최선을 다하여 책임지는 기업입니다.
+      </p>
+    </div>
+
+    <section class="pt-20 md:pt-32">
+      <div class="mb-5">
+        <ul class="flex flex-row flex-wrap justify-start gap-1" role="tablist">
+          {
+            CATEGORIES.map((cat) => (
+              <li>
+                <button
+                  type="button"
+                  data-tab={cat}
+                  class="text-16 main-color-transition inline-flex h-10 items-center justify-center rounded-md px-4 py-2 font-medium hover:bg-accent data-[active]:bg-accent"
+                  data-active={cat === DEFAULT_CATEGORY ? "" : null}
+                >
+                  {cat}
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <ul class="flex flex-row flex-wrap">
+        {
+          performance.map((p) => (
+            <li
+              data-category={p.category}
+              class:list={[
+                "main-duration-300 relative mt-4 flex h-[400px] w-full overflow-hidden hover:opacity-80 md:mr-4 md:h-[460px] md:w-[337px] md:justify-center lg:mr-5 lg:mt-5 lg:w-[410px]",
+                { hidden: p.category !== DEFAULT_CATEGORY },
+              ]}
+            >
+              <div class="relative flex w-full shrink-0 flex-col justify-between overflow-hidden rounded-2xl bg-gray-100">
+                <div class="flex h-full flex-col justify-between p-4 md:p-5.5 xl:px-6">
+                  <div class="flex items-center justify-between xl:items-start">
+                    <h3 class="text-18 lg:text-24">{p.name}</h3>
+                  </div>
+                  <ul class="text-12 lg:text-14">
+                    <li class="flex items-center pt-5 md:pt-6">
+                      <h4 class="mr-3">위치</h4>
+                      <p class="pl-1"> : {p.address}</p>
+                    </li>
+                    <li class="flex items-center">
+                      <h4 class="mr-3">규모</h4>
+                      <p class="pl-1"> : {p.scale}</p>
+                    </li>
+                    {p.units && (
+                      <li class="flex items-center">
+                        <h4>세대수</h4>
+                        <p class="pl-1"> : {p.units}</p>
+                      </li>
+                    )}
+                    <li class="flex items-center">
+                      <h4>건설사</h4>
+                      <p class="pl-1"> : {p.contractor}</p>
+                    </li>
+                    <li class="flex items-center">
+                      <h4 class="mr-3">일시</h4>
+                      <p class="pl-1"> : {p.year}</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="relative h-3/5 w-full shrink-0">
+                  {imageFor(p.image) && (
+                    <Image
+                      src={imageFor(p.image)!}
+                      alt={p.name}
+                      width={820}
+                      class="absolute inset-0 h-full w-full object-cover"
+                    />
+                  )}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
+</Layout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>("[data-tab]");
+  const cards = document.querySelectorAll<HTMLElement>("[data-category]");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const cat = tab.dataset.tab;
+      tabs.forEach((t) =>
+        t === tab
+          ? t.setAttribute("data-active", "")
+          : t.removeAttribute("data-active"),
+      );
+      cards.forEach((card) =>
+        card.classList.toggle("hidden", card.dataset.category !== cat),
+      );
+    });
+  });
+</script>
