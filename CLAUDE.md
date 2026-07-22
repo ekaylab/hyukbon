@@ -20,5 +20,6 @@
 - `wrangler pages deploy dist`로 수동 배포도 가능(로그인됨).
 
 ## 폐지된 구 아키텍처 (참고)
-- 구: DynamoDB `hyukbon-performance`+`hyukbon-otp`, S3 `hyukbon-assets-381491848841`, SES OTP admin 로그인, Vercel OIDC role `hyukbon-app-role`, IAM user `hyukbon-app`. 전부 미사용.
-- ⚠️ **AWS 리소스는 아직 살아있음(비용·보안면).** 실적 데이터는 `migrate/`(gitignore)로 export 완료 → DDB 테이블·S3 버킷·SES·IAM role/user 폐기(decommission) 남음.
+- 구: DynamoDB `hyukbon-performance`+`hyukbon-otp`, S3 `hyukbon-assets-381491848841`, SES OTP admin 로그인, Vercel OIDC role `hyukbon-app-role`, IAM user `hyukbon-app`.
+- **AWS 리소스 2026-07 전부 삭제 완료** (DDB 2테이블·S3 버킷·IAM role·IAM user+key). 데이터는 `migrate/`(로컬·gitignore)에 백업.
+- 보존: SES 도메인 ID(eklab.kr 등 — 타 사업 공유), Vercel OIDC provider `oidc.vercel.com/ekankr2s-projects`(타 프로젝트 공유가능). 둘 다 hyukbon 전용 아님.
