@@ -17,8 +17,8 @@
 
 ## 배포
 - **Pages 아님 = Worker(static assets)**. 대시보드 "Workers & Pages"에 같이 보여서 헷갈림. API도 `/workers/scripts`, `wrangler pages *` 명령은 안 먹음(프로젝트 0건).
-- CF 대시보드 git 연동 빌드. build=`astro build`, output=`dist/`. adapter 불필요(전정적).
-- repo에 wrangler 설정 없음 → 로컬 `wrangler deploy` 하면 대시보드 빌드본 덮어씀. 하지 마라.
+- CF 대시보드 git 연동 빌드. build=`astro build`, output=`dist/`. **adapter 절대 넣지 마라** — `@astrojs/cloudflare` 붙으면 SSR 전환돼 이미지가 런타임 `/_image?href=`로 나가는데 서버가 안 도니 전부 404(2026-07 CF 봇 PR이 이 짓 함, `2ea9d91`에서 원복).
+- `wrangler.jsonc` = assets-only(`main` 없음). 로컬 `wrangler deploy` 하면 대시보드 빌드본 덮어씀. 하지 마라.
 - 커스텀도메인(apex+www) = `PUT /accounts/{acc}/workers/domains` 로 붙임. DNS 레코드는 CF가 자동 생성·관리(존에 직접 안 보임).
 
 ## 폐지된 구 아키텍처 (참고)
