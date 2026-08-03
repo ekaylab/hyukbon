@@ -23,14 +23,14 @@ const DEFAULT_CATEGORY = "공동주택";
 
     <section class="pt-20 md:pt-32">
       <div class="mb-5">
-        <ul class="flex flex-row flex-wrap justify-start gap-1" role="tablist">
+        <ul class="flex flex-row flex-wrap justify-start gap-2" role="tablist">
           {
             CATEGORIES.map((cat) => (
               <li>
                 <button
                   type="button"
                   data-tab={cat}
-                  class="text-16 main-color-transition inline-flex h-10 items-center justify-center rounded-md px-4 py-2 font-medium hover:bg-accent data-[active]:bg-accent"
+                  class="text-16 main-color-transition inline-flex h-10 items-center justify-center border border-sandline bg-white px-4 py-2 font-medium hover:border-main hover:text-main data-[active]:border-ink data-[active]:bg-ink data-[active]:text-ivory"
                   data-active={cat === DEFAULT_CATEGORY ? "" : null}
                 >
                   {cat}
@@ -40,56 +40,60 @@ const DEFAULT_CATEGORY = "공동주택";
           }
         </ul>
       </div>
-      <ul class="flex flex-row flex-wrap">
+      <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           performance.map((p) => (
             <li
               data-category={p.category}
               class:list={[
-                "main-duration-300 relative mt-4 flex h-[400px] w-full overflow-hidden hover:opacity-80 md:mr-4 md:h-[460px] md:w-[337px] md:justify-center lg:mr-5 lg:mt-5 lg:w-[410px]",
+                "main-color-transition group border border-sandline bg-white hover:border-main",
                 { hidden: p.category !== DEFAULT_CATEGORY },
               ]}
             >
-              <div class="relative flex w-full shrink-0 flex-col justify-between overflow-hidden rounded-2xl bg-gray-100">
-                <div class="flex h-full flex-col justify-between p-4 md:p-5.5 xl:px-6">
-                  <div class="flex items-center justify-between xl:items-start">
-                    <h3 class="text-18 lg:text-24">{p.name}</h3>
-                  </div>
-                  <ul class="text-12 lg:text-14">
-                    <li class="flex items-center pt-5 md:pt-6">
-                      <h4 class="mr-3">위치</h4>
-                      <p class="pl-1"> : {p.address}</p>
-                    </li>
-                    <li class="flex items-center">
-                      <h4 class="mr-3">규모</h4>
-                      <p class="pl-1"> : {p.scale}</p>
-                    </li>
-                    {p.units && (
-                      <li class="flex items-center">
-                        <h4>세대수</h4>
-                        <p class="pl-1"> : {p.units}</p>
-                      </li>
-                    )}
-                    <li class="flex items-center">
-                      <h4>건설사</h4>
-                      <p class="pl-1"> : {p.contractor}</p>
-                    </li>
-                    <li class="flex items-center">
-                      <h4 class="mr-3">일시</h4>
-                      <p class="pl-1"> : {p.year}</p>
-                    </li>
-                  </ul>
+              {imageFor(p.image) && (
+                <div class="overflow-hidden border-b border-sandline">
+                  <Image
+                    src={imageFor(p.image)!}
+                    alt={`${p.name} 조감도`}
+                    width={820}
+                    class="main-duration-300 h-52 w-full object-cover group-hover:scale-105"
+                  />
                 </div>
-                <div class="relative h-3/5 w-full shrink-0">
-                  {imageFor(p.image) && (
-                    <Image
-                      src={imageFor(p.image)!}
-                      alt={p.name}
-                      width={820}
-                      class="absolute inset-0 h-full w-full object-cover"
-                    />
+              )}
+              <div class="p-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-12 border border-olive/40 px-2 py-0.5 font-medium tracking-widest text-olive">
+                    {p.category}
+                  </span>
+                  {p.year.includes("진행중") && (
+                    <span class="text-12 font-bold tracking-widest text-main">진행중</span>
                   )}
                 </div>
+                <h3 class="text-18 lg:text-21 mt-3 font-extrabold tracking-tight">{p.name}</h3>
+                <ul class="text-12 lg:text-14 mt-4 space-y-1.5 border-t border-dashed border-sandline pt-4 font-light text-ink/70">
+                  <li class="flex gap-3">
+                    <h4 class="text-12 w-11 shrink-0 pt-0.5 font-bold tracking-widest text-olive">위치</h4>
+                    <p>{p.address}</p>
+                  </li>
+                  <li class="flex gap-3">
+                    <h4 class="text-12 w-11 shrink-0 pt-0.5 font-bold tracking-widest text-olive">규모</h4>
+                    <p>{p.scale}</p>
+                  </li>
+                  {p.units && (
+                    <li class="flex gap-3">
+                      <h4 class="text-12 w-11 shrink-0 pt-0.5 font-bold tracking-widest text-olive">세대수</h4>
+                      <p>{p.units}</p>
+                    </li>
+                  )}
+                  <li class="flex gap-3">
+                    <h4 class="text-12 w-11 shrink-0 pt-0.5 font-bold tracking-widest text-olive">건설사</h4>
+                    <p>{p.contractor}</p>
+                  </li>
+                  <li class="flex gap-3">
+                    <h4 class="text-12 w-11 shrink-0 pt-0.5 font-bold tracking-widest text-olive">일시</h4>
+                    <p>{p.year}</p>
+                  </li>
+                </ul>
               </div>
             </li>
           ))

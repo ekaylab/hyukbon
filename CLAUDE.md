@@ -10,8 +10,9 @@
 
 ## 구조 주의점
 - 커스텀 Tailwind 토큰(text-14/…/50, color main·txt-01~06, breakpoint esa/xxs/…, container-1200)은 **`src/styles/global.css`의 `@theme`** (v4는 config 파일 안 씀).
+- 2026-08 리뉴얼: 팔레트 = 로고 기준 먹색·웜화이트·혁본레드(ivory/ink/sandline/olive + 기존 main). 홈 히어로·통계는 performance.json에서 빌드 시 계산(총 현장·시공사·진행중) — 데이터 추가하면 자동 갱신. 메인·스톡 이미지 대신 실적 조감도 사용.
 - `/performance` 카테고리 필터 = 클라이언트 JS 탭(전 항목 DOM 렌더 후 토글). 쿼리파라미터 아님.
-- 메인 캐러셀 = **vanilla embla**(`src/components/PerformanceCarousel.astro`), React island 아님.
+- 메인 캐러셀(embla)은 리뉴얼 때 그리드로 대체·삭제(컴포넌트·deps 제거).
 - 라우팅 = 파일기반(`src/pages`). 공개 정적 이미지는 `public/`(로고·메인·PDF 등), 최적화 대상 실적 이미지만 `src/assets`.
 - sitemap = `@astrojs/sitemap` 자동(`/sitemap-index.xml`), robots = `public/robots.txt`.
 

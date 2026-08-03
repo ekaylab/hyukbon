@@ -77,7 +77,7 @@ const orgJsonLd = {
   </head>
   <body>
     <header
-      class="mx-auto sticky top-0 z-50 h-14 border-b border-solid bg-white md:h-20"
+      class="mx-auto sticky top-0 z-50 h-14 border-b border-solid border-sandline bg-ivory/95 backdrop-blur md:h-20"
     >
       <div
         class="mx-auto flex h-full w-full items-center px-4 md:w-[712px] md:px-0 lg:w-[952px] xl:w-[1316px]"
@@ -93,14 +93,28 @@ const orgJsonLd = {
             />
           </a>
           <ul
-            class="text-18 hidden w-3/5 flex-row flex-wrap justify-between md:flex"
+            class="text-18 hidden w-3/5 flex-row flex-wrap items-center justify-between md:flex"
           >
-            <li class="flex items-center"><a href="/about">회사소개</a></li>
-            <li class="flex items-center"><a href="/scope">사업분야</a></li>
             <li class="flex items-center">
-              <a href="/performance">업무실적</a>
+              <a class="main-color-transition hover:text-main" href="/about">회사소개</a>
             </li>
-            <li class="flex items-center"><a href="/recruite">인재채용</a></li>
+            <li class="flex items-center">
+              <a class="main-color-transition hover:text-main" href="/scope">사업분야</a>
+            </li>
+            <li class="flex items-center">
+              <a class="main-color-transition hover:text-main" href="/performance">업무실적</a>
+            </li>
+            <li class="flex items-center">
+              <a class="main-color-transition hover:text-main" href="/recruite">인재채용</a>
+            </li>
+            <li class="hidden items-center lg:flex">
+              <a
+                href="tel:1522-9432"
+                class="main-color-transition border border-ink px-3.5 py-1.5 text-16 font-semibold hover:border-main hover:text-main"
+              >
+                1522-9432
+              </a>
+            </li>
           </ul>
           <div class="flex items-center md:hidden">
             <label for="menu-toggle" class="cursor-pointer">
@@ -137,13 +151,13 @@ const orgJsonLd = {
       <slot />
     </main>
     <footer
-      class="text-14 text-txt-06 flex items-center justify-center bg-neutral-800 py-14 md:px-0"
+      class="text-14 facade-dark flex items-center justify-center bg-ink py-14 text-ivory/60 md:px-0"
     >
       <div
         class="flex max-w-[384px] flex-row md:w-[712px] md:max-w-none lg:w-[1000px] xl:w-[1500px]"
       >
         <div class="flex flex-col">
-          <h4 class="text-30">HYUKBON</h4>
+          <h4 class="text-30 font-extrabold tracking-tight text-ivory">HYUKBON</h4>
           <p class="mt-4">
             주식회사 혁본 ㅣ 경기도 화성시 동탄기흥로 614,<br class="md:hidden" />
             더퍼스트타워2차 301호 (영천동) ㅣ<br class="md:hidden" /> 대표번호 : 1522-9432

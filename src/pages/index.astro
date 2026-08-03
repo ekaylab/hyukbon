@@ -1,246 +1,280 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import PerformanceCarousel from "../components/PerformanceCarousel.astro";
 import ArrowCircleRight from "../components/ArrowCircleRight.astro";
+import { performance, imageFor } from "../lib/performance";
+
+// 실적 데이터에서 그대로 뽑는 숫자 — 데이터가 늘면 같이 는다
+const total = performance.length;
+const ongoing = performance.filter((p) => p.year.includes("진행중")).length;
+const contractors = new Set(
+  performance.flatMap((p) =>
+    p.contractor.split(/[,/]/).map((c) => c.trim()).filter(Boolean),
+  ),
+).size;
+const sinceYear = Math.min(
+  ...performance
+    .map((p) => Number(p.year.slice(0, 4)))
+    .filter((y) => !Number.isNaN(y)),
+);
+
+const hero = performance[0];
+const highlights = performance.slice(0, 6);
+
+const stats = [
+  { value: String(total), suffix: "곳", label: "누적 수행 현장" },
+  { value: String(contractors), suffix: "사", label: "협력 시공사" },
+  { value: String(new Date().getFullYear() - sinceYear), suffix: "년", label: `${sinceYear}년부터` },
+  { value: String(ongoing), suffix: "곳", label: "진행중 현장" },
+];
+
+const scopes = [
+  { href: "/scope/research", en: "RESEARCH", ko: "리서치 및 시장조사" },
+  { href: "/scope/consulting", en: "CONSULTING", ko: "마케팅 컨설팅 및 기획" },
+  { href: "/scope/selling", en: "SELLING", ko: "부동산 분양대행" },
+  { href: "/scope/allience", en: "ALLIENCE", ko: "전략적 제휴" },
+];
+
+const values = [
+  {
+    name: "최대 이익 창출",
+    desc: "축적된 노하우와 데이터베이스를 통해 최소의 비용으로 최대의 고객이익 창출",
+  },
+  {
+    name: "가치의 극대화",
+    desc: "경험이 풍부한 임직원, 부동산 관련업계를 통한 상호 소통 중점의 유기적 업무 플로우 구축",
+  },
+  {
+    name: "신의 성실 윤리",
+    desc: "철저한 윤리규정 준수를 통한 투명한 업무 수행, 고객의 이익을 우선시하는 운영 방안 기획",
+  },
+  {
+    name: "고객의 만족도",
+    desc: "안정성을 기반으로 높은 품질의 서비스, 수행과정 및 결과에 대한 상세한 피드백 제공",
+  },
+];
 ---
 
 <Layout>
-  <article class="flex flex-col flex-wrap overflow-x-hidden px-3.5 md:px-0">
+  <article class="overflow-x-hidden">
     <h1 class="sr-only">혁본 — 분양대행·부동산개발 전문기업</h1>
-    <div
-      class="text-26 mx-auto w-full max-w-[384px] md:w-[712px] md:max-w-none md:text-30 lg:w-[948px] xl:w-[1316px]"
-    >
-      <a
-        href="/about"
-        class="group flex select-none pt-3 text-white md:pt-8 lg:pt-4"
+
+    <!-- 히어로 — 실제 수행 현장 -->
+    <section class="facade border-b border-sandline">
+      <div
+        class="mx-auto grid w-full max-w-[384px] items-center gap-10 px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] lg:grid-cols-[3fr_2fr] xl:w-[1316px]"
       >
-        <div
-          class="relative overflow-hidden rounded-2xl lg:h-[486px] xl:h-[621px]"
-        >
-          <div
-            class="text-28 absolute left-6 top-4 z-10 md:left-8 md:top-7 lg:left-10 lg:top-12 xl:left-12"
+        <div>
+          <p class="text-14 flex items-center gap-3 font-bold tracking-[0.25em] text-main">
+            <span class="inline-block h-px w-8 bg-main"></span>
+            부동산 분양대행 · 분양기획 · 마케팅
+          </p>
+          <h2
+            class="text-38 mt-5 max-w-3xl font-extrabold tracking-tight md:text-50 md:leading-[1.15]"
           >
-            <p class="text-21 inline-block md:text-28">
-              고객의 가치 실현을 최우선으로
-            </p>
-            <h3 class="text-28 -mt-1 font-bold tracking-tight md:text-38">
-              빛나는 성과를 만듭니다.
-            </h3>
-          </div>
-          <img
-            src="/메인(2).jpg"
-            alt="main_image"
-            class="main-duration-300 h-[240px] brightness-50 md:hidden"
-            height="740"
-            width="1316"
-          />
-          <img
-            src="/메인(1).jpg"
-            alt="main_image"
-            class="main-duration-300 animate-zoom-in hidden brightness-50 md:flex"
-            height="740"
-            width="1316"
-          />
-          <div
-            class="text-14 absolute bottom-4 right-4 flex flex-row font-medium md:bottom-6 md:right-6 lg:bottom-9 lg:right-10 lg:text-22 xl:bottom-10"
-          >
+            {sinceYear}년부터 {total}개 현장,<br />숫자로 증명합니다
+          </h2>
+          <p class="text-16 md:text-18 mt-6 max-w-2xl font-light break-keep text-ink/70">
+            혁본은 분양기획부터 조직 세팅, 완판까지 현장 전 과정을 책임지는 부동산
+            마케팅 전문기업입니다. 고객의 가치 실현을 최우선으로 빛나는 성과를
+            만듭니다.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a
+              href="/performance"
+              class="main-color-transition text-16 bg-ink px-6 py-3.5 font-bold text-ivory hover:bg-main"
+            >
+              수행실적 보기
+            </a>
             <a
               href="/(주)혁본 지명원.pdf"
-              class="main-duration-300 flex flex-row items-center pr-10 hover:text-gray-300"
+              class="main-color-transition text-16 flex items-center gap-2 border border-ink px-6 py-3.5 font-semibold hover:border-main hover:text-main"
             >
-              <p class="pr-2">회사 지명원 다운로드</p>
-              <span class="text-18 md:text-22"><ArrowCircleRight /></span>
-            </a>
-            <a
-              href="/about"
-              class="main-duration-300 flex flex-row items-center hover:text-gray-300"
-            >
-              <div class="pr-2">회사소개 바로가기</div>
-              <span class="text-18 md:text-22"><ArrowCircleRight /></span>
+              회사 지명원 다운로드 <ArrowCircleRight />
             </a>
           </div>
         </div>
-      </a>
-      <section>
-        <div class="pt-3 text-white md:pt-2.5 lg:pt-4">
-          <ul
-            class="flex select-none flex-col flex-wrap justify-between md:flex-row"
-          >
-            <li
-              class="text-16 group relative h-[220px] w-full overflow-hidden rounded-2xl bg-gray-100 md:h-[231px] md:w-[32.5%]"
-            >
-              <a href="/scope">
-                <div
-                  class="absolute left-6 top-6 z-10 lg:left-10 lg:top-10 xl:left-11 xl:top-11"
-                >
-                  <p>최적의 컨설팅과 솔루션 제공</p>
-                  <h3 class="text-28"> 사업분야</h3>
-                </div>
-                <img
-                  class="main-duration-300 h-full brightness-50 group-hover:brightness-100"
-                  src="/사업분야.jpg"
-                  alt="분양대행이미지"
-                  width="428"
-                  height="340"
-                />
-                <div
-                  class="text-14 absolute bottom-4 right-4 flex flex-row items-center justify-between font-medium lg:bottom-8 lg:right-10 lg:text-16"
-                >
-                  <p class="pr-2">사업분야 바로가기</p>
-                  <span class="text-18"><ArrowCircleRight /></span>
-                </div>
-              </a>
-            </li>
-            <li
-              class="text-16 group relative mt-3 h-[220px] w-full overflow-hidden rounded-2xl bg-gray-100 md:mt-0 md:h-[231px] md:w-[32.5%]"
-            >
-              <a href="/performance">
-                <div
-                  class="absolute left-6 top-6 z-10 lg:left-10 lg:top-10 xl:left-11 xl:top-11"
-                >
-                  <p>신의, 성실, 신뢰 기반의</p>
-                  <h3 class="text-28"> 업무실적</h3>
-                </div>
-                <img
-                  class="main-duration-300 h-full brightness-50 group-hover:brightness-100"
-                  src="/업무실적.jpg"
-                  alt="업무실적이미지"
-                  width="700"
-                  height="500"
-                />
-                <div
-                  class="text-14 absolute bottom-4 right-4 flex flex-row items-center justify-between font-medium lg:bottom-8 lg:right-10 lg:text-16"
-                >
-                  <p class="pr-2">업무실적 바로가기</p>
-                  <span class="text-18"><ArrowCircleRight /></span>
-                </div>
-              </a>
-            </li>
-            <li
-              class="text-16 group relative mt-3 h-[220px] w-full overflow-hidden rounded-2xl bg-gray-100 md:mt-0 md:h-[231px] md:w-[32.5%]"
-            >
-              <div
-                class="absolute left-6 top-6 z-10 lg:left-10 lg:top-10 xl:left-11 xl:top-11"
-              >
-                <p>A부터 Z까지 모두모두</p>
-                <h3 class="text-28">인재채용</h3>
-              </div>
-              <a href="/recruite" target="_blank">
-                <img
-                  class="main-duration-300 h-full brightness-50 group-hover:brightness-100"
-                  src="/인재채용.jpg"
-                  alt="인재채용이미지"
-                  width="600"
-                  height="400"
-                />
-              </a>
-              <div
-                class="text-14 absolute bottom-4 right-4 flex flex-row items-center justify-between font-medium lg:bottom-8 lg:right-10 lg:text-16"
-              >
-                <p class="pr-2">인재채용 보러가기</p>
-                <span class="text-18"><ArrowCircleRight /></span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class="relative mt-10 flex flex-col items-start py-10">
-        <div
-          class="absolute left-1/2 right-1/2 top-0 -z-10 h-full w-screen -translate-x-1/2 bg-zinc-100"
-        >
-        </div>
-        <h2 class="text-26">고객이 있기에 저희가 있습니다.</h2>
-        <p class="text-14 pt-6 md:pt-2 md:text-16">
-          혁본은 오로지 “가치 창출”과 “고객 감동”을 위해 움직입니다.
-          <br /> 최선을 다해 차별화된 마케팅 서비스를 제공하겠습니다.
-        </p>
-        <div class="mt-10 md:px-0 xl:mt-20">
-          <ul class="text-14 flex flex-col md:text-16 lg:flex-row lg:divide-y-0">
-            <li class="border-b pb-3 md:py-5 lg:pr-5">
-              <h4 class="text-16 md:text-18">최대 이익 창출</h4>
-              <p class="pt-3 font-light">
-                축적된 노하우와 데이터베이스를 통해<br /> 최소의 비용으로 최대의 고객이익
-                창출
+        {
+          hero && imageFor(hero.image) && (
+            <figure class="relative hidden lg:block">
+              <Image
+                src={imageFor(hero.image)!}
+                alt={`${hero.name} 조감도`}
+                width={820}
+                class="border border-sandline bg-white p-1.5"
+                loading="eager"
+              />
+              <figcaption class="text-12 mt-2 flex items-center justify-between font-medium tracking-widest text-olive">
+                <span>{hero.name}</span>
+                <span class="text-main">{hero.year.includes("진행중") ? "진행중" : "수행완료"}</span>
+              </figcaption>
+            </figure>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- 숫자 밴드 -->
+    <section class="facade-dark border-b border-sandline bg-ink text-ivory">
+      <div
+        class="mx-auto grid w-full max-w-[384px] grid-cols-2 md:w-[712px] md:max-w-none md:grid-cols-4 md:divide-x md:divide-ivory/10 lg:w-[948px] xl:w-[1316px]"
+      >
+        {
+          stats.map((s) => (
+            <div class="px-4 py-8 md:px-6 md:py-10">
+              <p class="text-30 md:text-40 font-extrabold tracking-tight">
+                {s.value}<span class="text-main">{s.suffix}</span>
               </p>
-            </li>
-            <li class="border-b py-3 md:py-5 lg:px-5">
-              <h4 class="text-16 md:text-18">가치의 극대화</h4>
-              <p class="pt-3 font-light">
-                경험이 풍부한 임직원, 부동산 관련업계를 통한<br /> 상호 소통 중점의
-                유기적 업무 플로우 구축
-              </p>
-            </li>
-            <li class="border-b py-3 md:py-5 lg:px-5">
-              <h4 class="text-16 md:text-18">신의 성실 윤리</h4>
-              <p class="pt-3 font-light">
-                철저한 윤리규정 준수를 통한 투명한 업무 수행<br />고객의 이익을 우선시하는
-                운영 방안 기획
-              </p>
-            </li>
-            <li class="pt-3 md:pt-5 lg:pl-5">
-              <h4 class="text-16 md:text-18">고객의 만족도</h4>
-              <p class="pt-3 font-light">
-                안정성을 기반으로 높은 품질의 서비스<br />수행과정 및 결과에 대한 상세한
-                피드백 제공
-              </p>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class="relative hidden h-[480px] flex-row lg:flex">
-        <div
-          class="absolute left-1/2 right-1/2 top-0 -z-10 flex h-full w-screen -translate-x-1/2 flex-row bg-zinc-100"
-        >
-          <span class="relative flex w-5/12 grow-0">
-            <img
-              src="/혁본사무실.png"
-              alt="혁본사무실"
-              class="absolute inset-0 flex h-full w-full object-cover"
-            />
-          </span>
-          <div
-            class="relative flex h-full w-7/12 flex-col items-start justify-center"
-          >
-            <div class="absolute z-10 h-full w-full bg-black opacity-70"></div>
-            <img
-              src="/혁본사무실2.png"
-              alt=""
-              class="absolute inset-0 h-full w-full object-cover"
-            />
-            <div class="z-20 pl-10 text-white xl:pl-20">
-              <h3 class="text-36">고객 중심의 최대 이익</h3>
-              <p class="text-18 mt-6">
-                혁본은 오로지 고객 중심의 최대 이익이라는 목표와
-                <br /> 상품의 가치 실현에 무한한 책임감과 희로애락을 느끼는 기업입니다.
-                <br />
-                <br /> 20년 이상의 노하우와 데이터 베이스를 통해
-                <br /> 부동산 마케팅 업계에서 가장 정직하고 실력 있는 기업이 되겠습니다.
-                <br />
-                <br /> 갇혀 있는 조직이 아닌 구성원과의 소통, 다양한 협력을 통해
-                <br /> 유기적 시스템으로 효율성을 극대화합니다.
-                <br />
-                <br /> 다년간 전문성을 갖춘 인력들과 시스템으로
-                <br /> 고객 중심의 분양 파트너로 성공적인 성과를 이뤄내겠습니다.
-              </p>
+              <p class="text-14 mt-1 text-ivory/55">{s.label}</p>
             </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- 사업분야 -->
+    <section class="border-b border-sandline">
+      <div
+        class="mx-auto w-full max-w-[384px] px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] xl:w-[1316px]"
+      >
+        <h2 class="text-14 font-bold tracking-[0.25em] text-main">BUSINESS</h2>
+        <p class="text-26 md:text-36 mt-3 font-extrabold tracking-tight">사업분야</p>
+        <ul class="mt-10 grid gap-px border border-sandline bg-sandline md:grid-cols-4">
+          {
+            scopes.map((s, i) => (
+              <li class="bg-ivory">
+                <a
+                  href={s.href}
+                  class="main-color-transition group block h-full p-6 hover:bg-white"
+                >
+                  <p class="text-14 font-bold text-main">{String(i + 1).padStart(2, "0")}</p>
+                  <h3 class="text-21 main-color-transition mt-3 font-extrabold tracking-tight group-hover:text-main">
+                    {s.en}
+                  </h3>
+                  <p class="text-14 mt-1 font-light text-ink/70">{s.ko}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- 수행실적 하이라이트 — 실제 현장 -->
+    <section class="border-b border-sandline bg-white/50">
+      <div
+        class="mx-auto w-full max-w-[384px] px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] xl:w-[1316px]"
+      >
+        <div class="flex items-end justify-between">
+          <div>
+            <h2 class="text-14 font-bold tracking-[0.25em] text-main">PORTFOLIO</h2>
+            <p class="text-26 md:text-36 mt-3 font-extrabold tracking-tight">함께한 현장들</p>
           </div>
-        </div>
-      </section>
-      <section class="pb-20 pt-10">
-        <div class="flex flex-row items-center justify-between">
-          <h2 class="pr-2.5">사업실적</h2>
           <a
             href="/performance"
-            class="text-14 flex items-center rounded-lg py-1.5 pl-4 font-medium md:text-21"
+            class="main-color-transition text-14 md:text-16 flex items-center gap-1.5 font-semibold hover:text-main"
           >
-            모아보기
-            <ArrowCircleRight class="ml-1.5" />
+            전체 {total}개 현장 <ArrowCircleRight />
           </a>
         </div>
-        <div class="pt-10">
-          <PerformanceCarousel />
+        <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {
+            highlights.map((p) => (
+              <li class="main-color-transition group border border-sandline bg-ivory hover:border-main">
+                {imageFor(p.image) && (
+                  <div class="overflow-hidden border-b border-sandline">
+                    <Image
+                      src={imageFor(p.image)!}
+                      alt={`${p.name} 조감도`}
+                      width={820}
+                      class="main-duration-300 h-44 w-full object-cover group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-12 border border-olive/40 px-2 py-0.5 font-medium tracking-widest text-olive">
+                      {p.category}
+                    </span>
+                    {p.year.includes("진행중") && (
+                      <span class="text-12 font-bold tracking-widest text-main">진행중</span>
+                    )}
+                  </div>
+                  <h3 class="text-18 main-color-transition mt-3 font-extrabold tracking-tight group-hover:text-main">
+                    {p.name}
+                  </h3>
+                  <p class="text-14 mt-1.5 font-light text-ink/60">
+                    {p.address.split(" ").slice(0, 2).join(" ")} · {p.scale}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- 핵심가치 -->
+    <section class="border-b border-sandline">
+      <div
+        class="mx-auto w-full max-w-[384px] px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] xl:w-[1316px]"
+      >
+        <h2 class="text-14 font-bold tracking-[0.25em] text-main">VALUE</h2>
+        <p class="text-26 md:text-36 mt-3 font-extrabold tracking-tight">
+          고객이 있기에 저희가 있습니다
+        </p>
+        <ul class="mt-10 grid gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+          {
+            values.map((v) => (
+              <li class="border-t-2 border-ink pt-4">
+                <h3 class="text-16 md:text-18 font-bold">{v.name}</h3>
+                <p class="text-14 mt-2 font-light break-keep text-ink/70">{v.desc}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- 문의 -->
+    <section class="facade-dark bg-ink text-ivory">
+      <div
+        class="mx-auto w-full max-w-[384px] px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] xl:w-[1316px]"
+      >
+        <h2 class="text-14 font-bold tracking-[0.25em] text-main">CONTACT</h2>
+        <p class="text-26 md:text-36 mt-3 font-extrabold tracking-tight">
+          현장 조건부터 들려주십시오
+        </p>
+        <div class="mt-10 grid gap-10 md:grid-cols-2">
+          <div class="space-y-5">
+            <a
+              href="tel:1522-9432"
+              class="main-color-transition text-38 md:text-50 block font-extrabold tracking-tight hover:text-main"
+            >
+              1522-9432
+            </a>
+            <dl class="text-14 space-y-2 text-ivory/70">
+              <div class="flex gap-4">
+                <dt class="text-12 w-12 shrink-0 font-bold tracking-widest text-ivory/40">FAX</dt>
+                <dd>050-4132-9432</dd>
+              </div>
+              <div class="flex gap-4">
+                <dt class="text-12 w-12 shrink-0 font-bold tracking-widest text-ivory/40">ADDR</dt>
+                <dd>경기도 화성시 동탄기흥로 614, 더퍼스트타워2차 301호</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="flex items-start justify-start md:justify-end">
+            <a
+              href="/(주)혁본 지명원.pdf"
+              class="main-color-transition text-18 bg-main px-8 py-4 font-bold text-white hover:bg-ivory hover:text-ink"
+            >
+              회사 지명원 받기
+            </a>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </article>
 </Layout>

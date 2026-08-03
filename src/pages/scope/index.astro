@@ -1,5 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
+import { performance, imageFor } from "../../lib/performance";
+
+const banner = performance.find((p) => imageFor(p.image));
 ---
 
 <Layout
@@ -16,44 +20,50 @@ import Layout from "../../layouts/Layout.astro";
     </div>
     <section class="pt-20 md:pt-32">
       <ul
-        class="flex divide-y md:divide-y-0 justify-between md:divide-x-2 divide-gray-200 flex-row text-28 md:text-22 lg:text-28 flex-wrap"
+        class="grid divide-y divide-sandline text-28 md:grid-cols-4 md:divide-x md:divide-y-0 md:text-22 lg:text-28"
       >
-        <li class="w-full md:w-auto pb-4 md:pb-0">
-          <a href="/scope/research">
-            <h3>RESEARCH</h3>
+        <li class="py-4 md:py-0 md:pr-5">
+          <a class="group" href="/scope/research">
+            <h3 class="main-color-transition group-hover:text-main">RESEARCH</h3>
             <p class="font-light text-18 lg:text-22">리서치 및 시장조사</p>
           </a>
         </li>
-        <li class="w-full md:w-auto py-4 md:pt-0 md:pl-5 md:-mr-6">
-          <a href="/scope/consulting">
-            <h3>CONSULTING</h3>
+        <li class="py-4 md:py-0 md:px-5">
+          <a class="group" href="/scope/consulting">
+            <h3 class="main-color-transition group-hover:text-main">CONSULTING</h3>
             <p class="font-light text-18 lg:text-22">마케팅 컨설팅 및 기획</p>
           </a>
         </li>
-        <li class="w-full md:w-auto md:pl-5 py-4 md:pt-0 md:-mr-6">
-          <a href="/scope/selling">
-            <h3>SELLING</h3>
+        <li class="py-4 md:py-0 md:px-5">
+          <a class="group" href="/scope/selling">
+            <h3 class="main-color-transition group-hover:text-main">SELLING</h3>
             <p class="font-light text-18 lg:text-22">부동산 분양대행</p>
           </a>
         </li>
-        <li class="w-1/2 md:w-auto md:pl-5 pt-4 md:pt-0">
-          <a href="/scope/allience">
-            <h3>ALLIENCE</h3>
+        <li class="pt-4 md:py-0 md:pl-5">
+          <a class="group" href="/scope/allience">
+            <h3 class="main-color-transition group-hover:text-main">ALLIENCE</h3>
             <p class="font-light text-18 lg:text-22">전략적 제휴</p>
           </a>
         </li>
       </ul>
     </section>
-    <div
-      class="w-full rounded-lg mt-40 hidden md:flex  h-[400px] relative overflow-hidden"
-    >
-      <img
-        src="/사업분야.jpg"
-        alt=""
-        width="2000"
-        height="1000"
-        class="absolute w-full h-full object-cover object-top"
-      />
-    </div>
+    {
+      banner && (
+        <figure class="mt-40 hidden md:block">
+          <div class="relative h-[400px] w-full overflow-hidden border border-sandline">
+            <Image
+              src={imageFor(banner.image)!}
+              alt={`${banner.name} 조감도`}
+              width={1600}
+              class="absolute h-full w-full object-cover object-top"
+            />
+          </div>
+          <figcaption class="text-12 mt-2 text-right font-medium tracking-widest text-olive">
+            수행 현장 — {banner.name}
+          </figcaption>
+        </figure>
+      )
+    }
   </article>
 </Layout>
