@@ -50,15 +50,13 @@ const banner = performance.find((p) => imageFor(p.image));
     </section>
     {
       banner && (
-        <figure class="mt-40 hidden md:block">
-          <div class="relative h-[400px] w-full overflow-hidden border border-sandline">
-            <Image
-              src={imageFor(banner.image)!}
-              alt={`${banner.name} 조감도`}
-              width={1600}
-              class="absolute h-full w-full object-cover object-top"
-            />
-          </div>
+        <figure class="mt-40">
+          <Image
+            src={imageFor(banner.image)!}
+            alt={`${banner.name} 조감도`}
+            width={1600}
+            class="w-full border border-sandline"
+          />
           <figcaption class="text-14 mt-2 text-right font-medium tracking-widest text-olive">
             수행 현장 — {banner.name}
           </figcaption>
