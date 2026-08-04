@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = "혁본은 분양대행 및 부동산 개발의 전 과정을 포괄적으로 수행하는 전문기업입니다.",
   ogImage = "/main.jpg",
+  noindex = false,
 } = Astro.props;
 
 const DEFAULT_TITLE = "혁본 | 분양대행·부동산개발";
@@ -24,7 +26,7 @@ const orgJsonLd = {
   legalName: "주식회사 혁본",
   alternateName: ["㈜혁본", "주식회사 혁본", "HYUKBON"],
   url: "https://hyukbon.com",
-  logo: "https://hyukbon.com/혁본로고.png",
+  logo: encodeURI("https://hyukbon.com/혁본로고.png"),
   image: "https://hyukbon.com/main.jpg",
   description:
     "혁본은 분양대행 및 부동산 개발의 전 과정을 포괄적으로 수행하는 전문기업입니다.",
@@ -51,6 +53,7 @@ const orgJsonLd = {
     <link rel="canonical" href={canonical} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="author" content="임익환" />
     <meta name="format-detection" content="telephone=no" />
     <meta
@@ -96,16 +99,16 @@ const orgJsonLd = {
             class="text-18 hidden w-3/5 flex-row flex-wrap items-center justify-between md:flex"
           >
             <li class="flex items-center">
-              <a class="main-color-transition hover:text-main" href="/about">회사소개</a>
+              <a class="main-color-transition hover:text-main" href="/about/">회사소개</a>
             </li>
             <li class="flex items-center">
-              <a class="main-color-transition hover:text-main" href="/scope">사업분야</a>
+              <a class="main-color-transition hover:text-main" href="/scope/">사업분야</a>
             </li>
             <li class="flex items-center">
-              <a class="main-color-transition hover:text-main" href="/performance">업무실적</a>
+              <a class="main-color-transition hover:text-main" href="/performance/">업무실적</a>
             </li>
             <li class="flex items-center">
-              <a class="main-color-transition hover:text-main" href="/recruite">인재채용</a>
+              <a class="main-color-transition hover:text-main" href="/recruite/">인재채용</a>
             </li>
             <li class="hidden items-center lg:flex">
               <a
@@ -138,10 +141,10 @@ const orgJsonLd = {
             <ul
               class="text-22 shadow absolute -left-4 right-0 top-10 z-50 max-h-0 w-screen overflow-hidden bg-white p-0 peer-checked:max-h-screen peer-checked:p-5"
             >
-              <li class="my-4 border-b"><a href="/about">회사소개</a></li>
-              <li class="my-4 border-b"><a href="/scope">사업분야</a></li>
-              <li class="my-4 border-b"><a href="/performance">업무실적</a></li>
-              <li class="my-4 border-b"><a href="/recruite">인재채용</a></li>
+              <li class="my-4 border-b"><a href="/about/">회사소개</a></li>
+              <li class="my-4 border-b"><a href="/scope/">사업분야</a></li>
+              <li class="my-4 border-b"><a href="/performance/">업무실적</a></li>
+              <li class="my-4 border-b"><a href="/recruite/">인재채용</a></li>
             </ul>
           </div>
         </nav>

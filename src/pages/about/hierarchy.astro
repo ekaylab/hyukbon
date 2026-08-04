@@ -12,17 +12,18 @@ import Layout from "../../layouts/Layout.astro";
     <div
       class="hidden xl:fixed xl:inline-block left-10 top-40 rounded overflow-hidden"
     >
-      <a href="/about" class="w-full flex h-full border-b border-sandline bg-white p-10 text-18 font-bold">
+      <a href="/about/" class="w-full flex h-full border-b border-sandline bg-white p-10 text-18 font-bold">
         회사소개
       </a>
       <ul class="pl-3 pt-1 divide-y-2 text-16">
-        <li class="py-2"><a href="/about/greetings">인사말</a></li>
-        <li class="py-2"><a href="/about/hierarchy">조직도</a></li>
-        <li class="py-2"><a href="/about/philosophy">경영이념</a></li>
-        <li class="py-2"><a href="/about/capability">사업역량</a></li>
+        <li class="py-2"><a href="/about/greetings/">인사말</a></li>
+        <li class="py-2"><a href="/about/hierarchy/">조직도</a></li>
+        <li class="py-2"><a href="/about/philosophy/">경영이념</a></li>
+        <li class="py-2"><a href="/about/capability/">사업역량</a></li>
       </ul>
     </div>
-    <h1 class="text-28 md:text-40">HIERACHY</h1>
+    <p class="text-14 md:text-16 font-bold tracking-[0.25em] text-main">HIERARCHY</p>
+    <h1 class="text-28 md:text-40 mt-2">조직도</h1>
     <div class="text-14 md:text-18 pt-4">
       <p>
         갇혀 있는 조직이 아닌 구성원과의 소통, 다양한 협력을 통해
@@ -33,11 +34,54 @@ import Layout from "../../layouts/Layout.astro";
     <div class="pt-12">
       <img
         src="/hierachy.png"
-        alt="조직도"
+        alt="혁본 조직도 — 대표이사 아래 자문단·전략기획실, 전략지원·경영지원·마케팅·업무지원 4개 본부"
         width="1316"
         height="1300"
         class="w-4/5 mx-auto"
       />
     </div>
+    <section class="mt-16 md:mt-24">
+      <h2 class="text-22 md:text-26 font-extrabold tracking-tight">부문별 업무</h2>
+      <p class="text-14 md:text-16 mt-3 font-light text-txt-03">
+        대표이사 직속으로 자문단과 전략기획실을 두고, 실무는 네 개 부문이
+        나누어 맡습니다.
+      </p>
+      <ul class="mt-8 grid gap-8 md:grid-cols-2">
+        {
+          [
+            {
+              name: "전략지원",
+              tasks: ["마케팅전략", "리서치", "시장분석"],
+              desc: "시장 데이터를 분석해 현장별 마케팅 전략의 뼈대를 세웁니다.",
+            },
+            {
+              name: "경영지원",
+              tasks: ["개발사업", "분양관리", "고객지원"],
+              desc: "개발사업 진행과 분양 관리, 계약 이후 고객 응대를 담당합니다.",
+            },
+            {
+              name: "마케팅",
+              tasks: ["주거시설 영업", "상업시설 영업", "호텔관광 영업"],
+              desc: "아파트·오피스텔부터 상업시설, 호텔관광까지 상품별 영업을 맡습니다.",
+            },
+            {
+              name: "업무지원",
+              tasks: ["신규 분양", "네트워크 마케팅", "인력대행 마케팅"],
+              desc: "신규 현장 세팅과 전국 인적 네트워크를 활용한 마케팅을 수행합니다.",
+            },
+          ].map((d) => (
+            <li class="border-t-2 border-ink pt-4">
+              <h3 class="text-18 md:text-21 font-bold">{d.name}</h3>
+              <p class="text-14 md:text-16 mt-2 font-light break-keep text-txt-03">
+                {d.desc}
+              </p>
+              <p class="text-14 mt-3 font-medium tracking-widest text-main">
+                {d.tasks.join(" · ")}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </article>
 </Layout>
