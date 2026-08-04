@@ -1,5 +1,36 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { performance } from "../../lib/performance";
+
+// 페이지의 주거/비주거/호텔·관광 3분류에 실적 카테고리를 매핑 — 건수는 데이터에서 직접 센다
+const GROUPS = [
+  { label: "주거시설", categories: ["공동주택", "오피스텔", "타운하우스"] },
+  { label: "비주거시설", categories: ["상업시설", "오피스"] },
+  { label: "호텔·관광", categories: ["생활숙박시설"] },
+];
+
+const inGroup = (g: (typeof GROUPS)[number]) =>
+  performance.filter((p) => g.categories.includes(p.category));
+
+const groups = GROUPS.map((g) => {
+  const items = inGroup(g);
+  return {
+    ...g,
+    count: items.length,
+    // 복합 현장은 카테고리별로 중복 등록돼 있어 이름 기준 1건만 노출
+    samples: [...new Map(items.map((p) => [p.name, p])).values()].slice(0, 2),
+  };
+});
+
+const total = performance.length;
+const sinceYear = Math.min(
+  ...performance.map((p) => Number(p.year.slice(0, 4))).filter((y) => !Number.isNaN(y)),
+);
+const contractors = new Set(
+  performance.flatMap((p) =>
+    p.contractor.split(/[,/]/).map((c) => c.trim()).filter(Boolean),
+  ),
+).size;
 ---
 
 <Layout
@@ -56,7 +87,10 @@ import Layout from "../../layouts/Layout.astro";
         <li
           class="flex flex-row items-center justify-start border-t py-4 lg:px-8"
         >
-          <h4 class="w-1/2">주거시설</h4>
+          <h4 class="w-1/2">
+            주거시설
+            <span class="text-14 ml-2 font-medium text-main">{groups[0].count}건</span>
+          </h4>
           <p class="text-16">
             아파트, 주상복합
             <br />
@@ -66,7 +100,10 @@ import Layout from "../../layouts/Layout.astro";
         <li
           class="flex flex-row items-center justify-start border-t py-4 lg:px-8"
         >
-          <h4 class="w-1/2">비주거시설</h4>
+          <h4 class="w-1/2">
+            비주거시설
+            <span class="text-14 ml-2 font-medium text-main">{groups[1].count}건</span>
+          </h4>
           <p class="text-16">
             상업시설, 업무시설 등<br />
             수익형 부동산 분양대행
@@ -75,7 +112,10 @@ import Layout from "../../layouts/Layout.astro";
         <li
           class="flex flex-row items-center justify-start border-y py-4 lg:px-8"
         >
-          <h4 class="w-1/2">호텔/관광</h4>
+          <h4 class="w-1/2">
+            호텔/관광
+            <span class="text-14 ml-2 font-medium text-main">{groups[2].count}건</span>
+          </h4>
           <p class="text-16">
             생활형 숙박시설, 리조트 등<br />
             호텔 및 관광시설 분양대행
@@ -83,5 +123,41 @@ import Layout from "../../layouts/Layout.astro";
         </li>
       </ul>
     </div>
+
+    <!-- 실적 데이터에서 그대로 뽑는 숫자·현장 — 데이터가 늘면 같이 는다 -->
+    <section class="mt-24 md:mt-32">
+      <h2 class="text-22 md:text-26 font-extrabold tracking-tight">분양대행 수행 실적</h2>
+      <p class="text-14 md:text-16 mt-3 font-light break-keep text-txt-03">
+        {`${sinceYear}년부터 ${total}개 현장의 분양을 대행했습니다. 주거시설 ${groups[0].count}건, 비주거시설 ${groups[1].count}건, 호텔·관광 ${groups[2].count}건이며, ${contractors}개 시공사와 함께 수행했습니다.`}
+      </p>
+
+      {
+        groups.map((g) => (
+          <div class="mt-10">
+            <h3 class="text-16 md:text-18 flex items-baseline gap-2 font-bold">
+              {g.label}
+              <span class="text-14 font-medium text-main">{g.count}건</span>
+            </h3>
+            <ul class="mt-3 divide-y divide-sandline border-t border-ink">
+              {g.samples.map((p) => (
+                <li class="text-14 md:text-16 flex flex-col gap-1 py-3 md:flex-row md:items-baseline md:gap-6">
+                  <span class="font-bold md:w-64 md:shrink-0">{p.name}</span>
+                  <span class="font-light text-txt-03">
+                    {[p.contractor, p.units, p.scale, p.year].filter(Boolean).join(" · ")}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      <a
+        href="/performance/"
+        class="main-color-transition text-16 mt-10 inline-block border border-ink px-6 py-3 font-semibold hover:border-main hover:text-main"
+      >
+        전체 {total}개 현장 실적 보기
+      </a>
+    </section>
   </article>
 </Layout>
