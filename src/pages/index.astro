@@ -19,7 +19,10 @@ const sinceYear = Math.min(
 );
 
 const hero = performance[0];
-const highlights = performance.slice(0, 6);
+// 복합 현장(공동주택+오피스텔)은 카테고리별 중복 등록 — 홈에선 이름 기준 1건만
+const highlights = [
+  ...new Map(performance.map((p) => [p.name, p])).values(),
+].slice(0, 6);
 
 const stats = [
   { value: String(total), suffix: "곳", label: "누적 수행 현장" },
