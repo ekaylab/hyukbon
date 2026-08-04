@@ -192,7 +192,9 @@ const values = [
                     <Image
                       src={imageFor(p.image)!}
                       alt={`${p.name} 조감도`}
-                      width={820}
+                      width={560}
+                      widths={[360, 560, 880]}
+                      sizes="(min-width: 1280px) 422px, (min-width: 1024px) 300px, (min-width: 768px) 344px, calc(100vw - 32px)"
                       class="main-duration-300 h-44 w-full object-cover group-hover:scale-105"
                       loading="lazy"
                     />

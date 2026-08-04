@@ -1,0 +1,14 @@
+# CF Workers static assets 기본값이 `max-age=0, must-revalidate` — 엣지는 캐시해도 브라우저는 매번 재검증한다.
+# _astro/* 는 내용 해시 파일명이라 영구 캐시가 안전.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# public/ 자산은 파일명이 고정이라 교체 가능성 있음 — 하루만.
+/*.png
+  Cache-Control: public, max-age=86400
+/*.jpg
+  Cache-Control: public, max-age=86400
+/*.pdf
+  Cache-Control: public, max-age=86400
+/*.ico
+  Cache-Control: public, max-age=86400
