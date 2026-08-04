@@ -1,4 +1,5 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css");
+/* 로컬 파일이라 빌드 때 번들에 인라인됨 — CDN CSS 링크와 달리 추가 요청·렌더 블로킹 없음 */
+@import "./pretendard.css";
 @import "tailwindcss";
 
 @theme {
@@ -6,7 +7,7 @@
   --color-ivory: #f6f5f2;
   --color-ink: #211f1e;
   --color-sandline: #e3e0da;
-  --color-olive: #8a877f;
+  --color-olive: #706d66; /* ivory/white 위 본문 대비 4.5:1 충족 (#8a877f는 3.3:1로 미달) */
 
   /* brand + text colors (ported from tailwind.config.ts) */
   --color-main: #bf1822;

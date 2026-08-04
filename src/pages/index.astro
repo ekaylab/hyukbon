@@ -103,9 +103,12 @@ const values = [
               <Image
                 src={imageFor(hero.image)!}
                 alt={`${hero.name} 조감도`}
-                width={1400}
+                width={800}
+                widths={[400, 560, 720, 800, 1120, 1600]}
+                sizes="(min-width: 1280px) 790px, (min-width: 1024px) 526px, (min-width: 768px) 712px, calc(100vw - 32px)"
                 class="w-full border border-sandline bg-white p-1.5"
                 loading="eager"
+                fetchpriority="high"
               />
               <figcaption class="text-14 mt-2 flex items-center justify-between font-medium tracking-widest text-olive">
                 <span>{hero.name}</span>
@@ -207,7 +210,7 @@ const values = [
                   <h3 class="text-21 main-color-transition mt-3 font-extrabold tracking-tight group-hover:text-main">
                     {p.name}
                   </h3>
-                  <p class="text-16 mt-1.5 font-light text-ink/60">
+                  <p class="text-16 mt-1.5 font-light text-ink/70">
                     {p.address.split(" ").slice(0, 2).join(" ")} · {p.scale}
                   </p>
                 </div>
