@@ -65,10 +65,10 @@ const values = [
     <!-- 히어로 — 실제 수행 현장 -->
     <section class="facade border-b border-sandline">
       <div
-        class="mx-auto grid w-full max-w-[384px] items-center gap-10 px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] lg:grid-cols-[1fr_1fr] xl:w-[1316px] xl:grid-cols-[10fr_11fr]"
+        class="mx-auto grid w-full max-w-[384px] items-center gap-10 px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] lg:grid-cols-[8fr_11fr] xl:w-[1316px] xl:grid-cols-[8fr_13fr]"
       >
         <div>
-          <p class="text-14 flex items-center gap-3 font-bold tracking-[0.25em] text-main">
+          <p class="text-14 md:text-16 xl:text-18 flex items-center gap-3 font-bold tracking-[0.25em] text-main">
             <span class="inline-block h-px w-8 bg-main"></span>
             부동산 분양대행 · 분양기획 · 마케팅
           </p>
@@ -99,7 +99,7 @@ const values = [
         </div>
         {
           hero && imageFor(hero.image) && (
-            <figure class="relative hidden lg:block">
+            <figure class="relative">
               <Image
                 src={imageFor(hero.image)!}
                 alt={`${hero.name} 조감도`}
@@ -126,7 +126,7 @@ const values = [
           stats.map((s) => (
             <div class="px-4 py-8 md:px-6 md:py-10">
               <p class="text-30 md:text-40 font-extrabold tracking-tight">
-                {s.value}<span class="text-ivory/50">{s.suffix}</span>
+                {s.value}<span class="ml-1 tracking-normal text-ivory/50">{s.suffix}</span>
               </p>
               <p class="text-14 mt-1 text-ivory/55">{s.label}</p>
             </div>
@@ -246,8 +246,8 @@ const values = [
         class="mx-auto w-full max-w-[384px] px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] xl:w-[1316px]"
       >
         <h2 class="text-14 font-bold tracking-[0.25em] text-main">CONTACT</h2>
-        <p class="text-26 md:text-36 mt-3 font-extrabold tracking-tight">
-          현장 조건부터 들려주십시오
+        <p class="text-26 md:text-36 mt-3 font-extrabold break-keep tracking-tight">
+          현장 상담, 편하게 문의주십시오
         </p>
         <div class="mt-10 grid gap-10 md:grid-cols-2">
           <div class="space-y-5">
