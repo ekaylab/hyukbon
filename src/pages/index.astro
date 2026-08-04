@@ -62,7 +62,7 @@ const values = [
     <!-- 히어로 — 실제 수행 현장 -->
     <section class="facade border-b border-sandline">
       <div
-        class="mx-auto grid w-full max-w-[384px] items-center gap-10 px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] lg:grid-cols-[3fr_2fr] xl:w-[1316px]"
+        class="mx-auto grid w-full max-w-[384px] items-center gap-10 px-4 py-16 md:w-[712px] md:max-w-none md:px-0 md:py-24 lg:w-[948px] lg:grid-cols-[1fr_1fr] xl:w-[1316px] xl:grid-cols-[10fr_11fr]"
       >
         <div>
           <p class="text-14 flex items-center gap-3 font-bold tracking-[0.25em] text-main">
@@ -100,8 +100,8 @@ const values = [
               <Image
                 src={imageFor(hero.image)!}
                 alt={`${hero.name} 조감도`}
-                width={820}
-                class="border border-sandline bg-white p-1.5"
+                width={1400}
+                class="w-full border border-sandline bg-white p-1.5"
                 loading="eager"
               />
               <figcaption class="text-12 mt-2 flex items-center justify-between font-medium tracking-widest text-olive">
