@@ -23,7 +23,7 @@ const DEFAULT_CATEGORY = "공동주택";
 
     <section class="pt-20 md:pt-32">
       <div class="mb-5">
-        <ul class="flex flex-row flex-wrap justify-start gap-2" role="tablist">
+        <ul class="flex flex-row flex-wrap justify-start gap-2">
           {
             CATEGORIES.map((cat) => (
               <li>
@@ -32,6 +32,7 @@ const DEFAULT_CATEGORY = "공동주택";
                   data-tab={cat}
                   class="text-16 main-color-transition inline-flex h-10 items-center justify-center border border-sandline bg-white px-4 py-2 font-medium hover:border-main hover:text-main data-[active]:border-ink data-[active]:bg-ink data-[active]:text-ivory"
                   data-active={cat === DEFAULT_CATEGORY ? "" : null}
+                  aria-pressed={cat === DEFAULT_CATEGORY}
                 >
                   {cat}
                 </button>
@@ -71,31 +72,31 @@ const DEFAULT_CATEGORY = "공동주택";
                     <span class="text-14 font-bold tracking-widest text-main">진행중</span>
                   )}
                 </div>
-                <h3 class="text-18 lg:text-21 mt-3 font-extrabold tracking-tight">{p.name}</h3>
-                <ul class="text-14 lg:text-16 mt-4 space-y-1.5 border-t border-dashed border-sandline pt-4 font-light text-ink/70">
-                  <li class="flex gap-3">
-                    <h4 class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">위치</h4>
-                    <p>{p.address}</p>
-                  </li>
-                  <li class="flex gap-3">
-                    <h4 class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">규모</h4>
-                    <p>{p.scale}</p>
-                  </li>
+                <h2 class="text-18 lg:text-21 mt-3 font-extrabold tracking-tight">{p.name}</h2>
+                <dl class="text-14 lg:text-16 mt-4 space-y-1.5 border-t border-dashed border-sandline pt-4 font-light text-ink/70">
+                  <div class="flex gap-3">
+                    <dt class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">위치</dt>
+                    <dd>{p.address}</dd>
+                  </div>
+                  <div class="flex gap-3">
+                    <dt class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">규모</dt>
+                    <dd>{p.scale}</dd>
+                  </div>
                   {p.units && (
-                    <li class="flex gap-3">
-                      <h4 class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">세대수</h4>
-                      <p>{p.units}</p>
-                    </li>
+                    <div class="flex gap-3">
+                      <dt class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">세대수</dt>
+                      <dd>{p.units}</dd>
+                    </div>
                   )}
-                  <li class="flex gap-3">
-                    <h4 class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">건설사</h4>
-                    <p>{p.contractor}</p>
-                  </li>
-                  <li class="flex gap-3">
-                    <h4 class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">일시</h4>
-                    <p>{p.year}</p>
-                  </li>
-                </ul>
+                  <div class="flex gap-3">
+                    <dt class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">건설사</dt>
+                    <dd>{p.contractor}</dd>
+                  </div>
+                  <div class="flex gap-3">
+                    <dt class="text-14 w-14 shrink-0 pt-0.5 font-bold tracking-widest text-olive">일시</dt>
+                    <dd>{p.year}</dd>
+                  </div>
+                </dl>
               </div>
             </li>
           ))
@@ -112,11 +113,10 @@ const DEFAULT_CATEGORY = "공동주택";
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const cat = tab.dataset.tab;
-      tabs.forEach((t) =>
-        t === tab
-          ? t.setAttribute("data-active", "")
-          : t.removeAttribute("data-active"),
-      );
+      tabs.forEach((t) => {
+        t.toggleAttribute("data-active", t === tab);
+        t.setAttribute("aria-pressed", String(t === tab));
+      });
       cards.forEach((card) =>
         card.classList.toggle("hidden", card.dataset.category !== cat),
       );
