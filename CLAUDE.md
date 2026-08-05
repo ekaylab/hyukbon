@@ -15,6 +15,7 @@
 - 메인 캐러셀(embla)은 리뉴얼 때 그리드로 대체·삭제(컴포넌트·deps 제거).
 - 라우팅 = 파일기반(`src/pages`). 공개 정적 이미지는 `public/`(로고·메인·PDF 등), 최적화 대상 실적 이미지만 `src/assets`.
 - sitemap = `@astrojs/sitemap` 자동(`/sitemap-index.xml`), robots = `public/robots.txt`.
+- ⚠️ **Pretendard woff2를 빌드가 굽는다**(`src/integrations/fonts.mjs` → `dist/fonts/`). 빌드된 HTML의 글자만 담는다(505자 102KB). CDN dynamic-subset은 9요청 232KB였다. 원본은 `src/assets/fonts/`, `public/fonts/` 사본은 **dev 표시용**. 굵기 축을 300~800으로 좁혀 놨으니 그 밖 굵기를 쓰려면 축부터 넓혀라.
 
 ## 배포
 - **Pages 아님 = Worker(static assets)**. 대시보드 "Workers & Pages"에 같이 보여서 헷갈림. API도 `/workers/scripts`, `wrangler pages *` 명령은 안 먹음(프로젝트 0건).

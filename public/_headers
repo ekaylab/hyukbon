@@ -12,3 +12,6 @@
   Cache-Control: public, max-age=86400
 /*.ico
   Cache-Control: public, max-age=86400
+# 빌드가 다시 굽는다 — 파일명이 고정이라 하루만
+/fonts/*
+  Cache-Control: public, max-age=86400

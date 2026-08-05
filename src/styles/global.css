@@ -1,6 +1,13 @@
-/* 로컬 파일이라 빌드 때 번들에 인라인됨 — CDN CSS 링크와 달리 추가 요청·렌더 블로킹 없음 */
-@import "./pretendard.css";
 @import "tailwindcss";
+
+/* 이 woff2는 빌드가 만든다 — src/integrations/fonts.mjs 참고. dev용 사본은 public/fonts/. */
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("/fonts/pretendard-subset.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   /* 2026-08 리뉴얼 팔레트 — 로고(블랙 지오메트릭 산세리프) 기준: 먹색·웜화이트·혁본 레드(main) */
